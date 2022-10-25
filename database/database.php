@@ -1,7 +1,7 @@
 <?php
 
 $server = 'localhost';
-$database = 'lond_books';
+$database = 'loan_books';
 $username = 'root';
 $password = '123456789';
 
