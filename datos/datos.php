@@ -1,5 +1,6 @@
 <?php
 class datos{
+  
   public static function queryExecutor($query){
     require '../dataBase/database.php'; // para obtener la variable connection
 
@@ -14,8 +15,6 @@ class datos{
     
     // dependiendo de la query, las funciones fetch o fetchAll van a retornar algo o null.
     // para las query de UPDATE y DELETE por ejemplo retornan null.
-
-    mysqli_close($connection);
 
     //Devuelve el objeto de la query si es que devuelve
     return $records;

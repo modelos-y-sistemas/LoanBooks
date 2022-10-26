@@ -3,7 +3,7 @@
 $server = 'localhost';
 $database = 'loan_books';
 $username = 'root';
-$password = '123456789';
+$password = '';
 
 try{
   $connection = new PDO("mysql:host=$server;dbname=$database;", $username, $password);

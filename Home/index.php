@@ -1,3 +1,12 @@
+<?php
+require '../class/librarianes.php';
+
+$librarianes = librarianes::get("id_librarian", 1);
+
+echo $librarianes[0]->name;
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
