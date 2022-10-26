@@ -2,19 +2,19 @@
 
 class librarianes{
   
-  private $id;
-  private $name;
-  private $surname;
-  private $dni;
-  private $emali;
-  private $password;
+  public $id;
+  public $name;
+  public $surname;
+  public $dni;
+  public $email;
+  public $password;
   
-  public function __construct($id = 0, $name = "n/n", $surname = "n/n", $dni = 0, $email = "nn@nn.com", $password = "n/n"){
+  public function __construct($id = 0, $name = "n/n", $surname = "n/n", $dni = null, $email = "nn@nn.com", $password = "n/n"){
     $this->id = $id;
     $this->name = $name;
     $this->surname = $surname;
     $this->dni = $dni;
-    $this->emali = $emali;
+    $this->email = $email;
     $this->password = $password;
   }
   
@@ -26,6 +26,17 @@ class librarianes{
 
     // si queryExecutor no es null devuelve los registro sino retorna null
     return (isset($librarian_record)) ? $librarian_record : null;
+  }
+
+  public function toString(){
+    
+    $result = "";
+    
+    foreach ($this as $key => $property) {
+      $result .= $key . ": ". $property . "<br>";
+    }
+
+    return $result;
   }
 
 }
