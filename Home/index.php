@@ -1,9 +1,15 @@
 <?php
-require '../class/librarianes.php';
 
-$librarianes = librarianes::get("id_librarian", 1);
+  require '../class/librarianes.php';
+  
+  $librarian_record = librarianes::get("id_librarian", 1);
+  
+  if ($librarian_record != false){
+    $librarian = new librarianes($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
+  }
 
-echo $librarianes[0]->name;
+  echo $librarian->toString();
+  echo $librarian->name;
 
 ?>
 
