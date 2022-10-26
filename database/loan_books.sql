@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2022 a las 06:23:26
+-- Tiempo de generación: 26-10-2022 a las 21:45:37
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -145,21 +145,21 @@ INSERT INTO `professores_t` (`id_professor`, `name`, `surname`, `dni`, `phone`) 
 --
 
 CREATE TABLE `students_t` (
-  `id_students` int(11) NOT NULL,
+  `id_student` int(11) NOT NULL,
   `number` int(4) NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
   `dni` int(10) DEFAULT NULL,
   `phone` int(10) NOT NULL,
-  `id_courses` int(11) NOT NULL
+  `id_course` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `students_t`
 --
 
-INSERT INTO `students_t` (`id_students`, `number`, `name`, `surname`, `dni`, `phone`, `id_courses`) VALUES
-(1, 1, 'Jeremias', 'Cuello', 45525488, 1132266763, 22),
+INSERT INTO `students_t` (`id_student`, `number`, `name`, `surname`, `dni`, `phone`, `id_course`) VALUES
+(1, 1, 'Jeremias', 'Cuello', 45525488, 1132266763, 21),
 (2, 2, 'Jesus', 'Zerda', NULL, 1132266765, 22);
 
 --
@@ -202,11 +202,11 @@ ALTER TABLE `professores_t`
 -- Indices de la tabla `students_t`
 --
 ALTER TABLE `students_t`
-  ADD PRIMARY KEY (`id_students`),
+  ADD PRIMARY KEY (`id_student`),
   ADD UNIQUE KEY `number` (`number`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `dni` (`dni`),
-  ADD KEY `id_courses` (`id_courses`);
+  ADD KEY `id_courses` (`id_course`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -240,7 +240,7 @@ ALTER TABLE `professores_t`
 -- AUTO_INCREMENT de la tabla `students_t`
 --
 ALTER TABLE `students_t`
-  MODIFY `id_students` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_student` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -252,13 +252,13 @@ ALTER TABLE `students_t`
 ALTER TABLE `orderes_t`
   ADD CONSTRAINT `rl_orderes_librarianes` FOREIGN KEY (`id_librarian`) REFERENCES `librarianes_t` (`id_librarian`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rl_orderes_professores` FOREIGN KEY (`id_professor`) REFERENCES `professores_t` (`id_professor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rl_orderes_students` FOREIGN KEY (`id_student`) REFERENCES `students_t` (`id_students`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rl_orderes_students` FOREIGN KEY (`id_student`) REFERENCES `students_t` (`id_student`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `students_t`
 --
 ALTER TABLE `students_t`
-  ADD CONSTRAINT `rl_students_courses` FOREIGN KEY (`id_courses`) REFERENCES `courses_t` (`id_course`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rl_students_courses` FOREIGN KEY (`id_course`) REFERENCES `courses_t` (`id_course`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
