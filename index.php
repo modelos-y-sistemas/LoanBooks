@@ -18,7 +18,7 @@
     <p class="main__about">
       Trabajo Práctico Final de las materias de Modelos y Sistemas, y Base de datos. Sistema ABM para gestión de prestamos de bibliotecas escolares.
     </p>
-    <a class="main__link" href="./Mis-Pendientes/">
+    <a class="main__link" href="./Login/">
       <button class="main__button">Ver mis Pendientes</button>
     </a>
   </div>
