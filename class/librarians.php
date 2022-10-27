@@ -1,6 +1,6 @@
 <?php
 
-class librarianes{
+class librarians{
   
   public $id;
   public $name;

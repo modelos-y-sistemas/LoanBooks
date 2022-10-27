@@ -1,6 +1,6 @@
 <?php
 
-  require '../class/librarianes.php';
+  require '../class/librarians.php';
   
   $librarian_record = librarianes::get("id_librarian", 1);
   
