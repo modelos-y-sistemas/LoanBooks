@@ -1,11 +1,19 @@
 <?php
+//Esto es uan base para adelantar el trabajo, aun requiere muchas mejoras y validaciones
+
+//obtencion de los datos del formulario de login de bibliotecario
 $input_Email=$_POST['email'];
 $input_Password=$_POST['password'];
 
+//accedo a la clase librarians
 require_once "../class/librarians.php";
+//obtengo el bibliotecario por su Mail 
 $librarian=librarians::get("email", $input_Email);
+//lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
 if($librarian->password==$input_Password){
+  //almaceno la variable de session user_id
   $_SESSION['user_id']=$librarian->id_librarian;
+  //envio al usuario que acaba de iniciar session a Home
   header("Location: ../Home");
 }
 //echo $librarian->name;
