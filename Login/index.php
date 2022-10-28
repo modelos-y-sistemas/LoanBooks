@@ -1,22 +1,46 @@
 <?php
 //Esto es uan base para adelantar el trabajo, aun requiere muchas mejoras y validaciones
 
-//obtencion de los datos del formulario de login de bibliotecario
-$input_Email=$_POST['email'];
-$input_Password=$_POST['password'];
+if($_POST){
+  
+  switch ($_POST['submit']) {
+    case 'librarian':
+      //accedo a la clase librarians
+      require "../class/librarians.php";
+      
+      //obtencion de los datos del formulario de login de bibliotecario
+      $input_email = $_POST['email'];
+      $input_password = $_POST['password'];
+      $librarian_record = null;
 
-//accedo a la clase librarians
-require_once "../class/librarians.php";
-//obtengo el bibliotecario por su Mail 
-$librarian=librarians::get("email", $input_Email);
-//lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
-if($librarian->password==$input_Password){
-  //almaceno la variable de session user_id
-  $_SESSION['user_id']=$librarian->id_librarian;
-  //envio al usuario que acaba de iniciar session a Home
-  header("Location: ../Home");
+      //obtengo el bibliotecario por su email 
+      $librarian_record = librarians::get("email", $input_email);
+      
+      //lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
+      if($librarian_record && $librarian_record->password == $input_password){
+        
+        $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
+        
+        //almaceno la variable de session user_id
+        session_start();
+        $_SESSION['librarian'] = $librarian;
+        
+        //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
+        header("Location: ../Buscar-y-Recibir");
+        
+      }
+      else{ echo "Email o password incorrectos"; }
+      break;
+    
+    case 'student':
+      
+      break;
+    case 'professor':
+    
+      break;
+  }
 }
-//echo $librarian->name;
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,12 +57,16 @@ if($librarian->password==$input_Password){
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
 </head>
 <body>
-  <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-    <label for="email">email</label>
-    <input type="email" name="email" id="email">
-    <label for="password">password</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Bibliotecario Login</button>
-  </form>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+      <div class="control">
+        <label for="email">email</label>
+      <input type="email" name="email" id="email">
+    </div>
+    <div class="control">
+      <label for="password">password</label>
+      <input type="text" name="password" id="password">
+    </div>
+    <button type="submit" name="submit" value="librarian">Bibliotecario Login</button>
+  </form>  
 </body>
 </html>

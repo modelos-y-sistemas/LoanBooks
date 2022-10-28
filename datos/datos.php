@@ -8,15 +8,17 @@ class datos{
     try {
       $stmt = $connection->prepare($query);
       $stmt->execute();
-    } catch (PDOException $e) {
+      
+      // la funcion fetchAll devuelve un arreglo de registros
+      // en cambio la funcion fetch, a secas (sin 'All'), devuelve solo un registro por mas
+      // que la query devuelva mas de uno, ira por el primero.
+  
+      return ($result) ? $stmt->fetchAll(PDO::FETCH_OBJ) : $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    catch (PDOException $e) {
       die('<strong>ERROR: Ejecución de la consulta fallida.</strong> <br> Mensaje: ' . $e->getMessage());
     }
-
-    // la funcion fetchAll devuelve un arreglo de registros
-    // en cambio la funcion fetch, a secas (sin 'All'), devuelve solo un registro por mas
-    // que la query devuelva mas de uno, ira por el primero.
-
-    return ($result) ? $stmt->fetchAll(PDO::FETCH_OBJ) : $stmt->fetch(PDO::FETCH_OBJ);
+    
     /*
       PDO::FETCH_OBJ especifica que el método fetch o fetchAll devolverá cada fila como un objeto
       con nombres de propiedad que correspondan a los nombres de columna devueltos en el conjunto
