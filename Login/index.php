@@ -1,5 +1,4 @@
 <?php
-//Esto es uan base para adelantar el trabajo, aun requiere muchas mejoras y validaciones
 
 function escape_string_sql($str){
   
