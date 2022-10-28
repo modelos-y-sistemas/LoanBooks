@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2022 a las 21:45:37
+-- Tiempo de generación: 28-10-2022 a las 03:34:45
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -66,10 +66,10 @@ INSERT INTO `courses_t` (`id_course`, `year`, `division`, `modality`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `librarianes_t`
+-- Estructura de tabla para la tabla `librarians_t`
 --
 
-CREATE TABLE `librarianes_t` (
+CREATE TABLE `librarians_t` (
   `id_librarian` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
@@ -79,12 +79,12 @@ CREATE TABLE `librarianes_t` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `librarianes_t`
+-- Volcado de datos para la tabla `librarians_t`
 --
 
-INSERT INTO `librarianes_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, `password`) VALUES
-(1, 'Edith', 'Gomez', NULL, 'edith@gmail.com', 'edith1234'),
-(2, 'la_rubia', 'Gonzalez', 45525488, 'la_rubia@gmail.com', 'la_rubia1234');
+INSERT INTO `librarians_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, `password`) VALUES
+(1, 'Edith', 'Soto', NULL, 'edith@gmail.com', 'edith1234'),
+(2, 'Analía ', 'Geoghegan', 45525488, 'la_rubia@gmail.com', 'la_rubia1234');
 
 -- --------------------------------------------------------
 
@@ -95,10 +95,10 @@ INSERT INTO `librarianes_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, 
 CREATE TABLE `orderes_t` (
   `id_order` int(11) NOT NULL,
   `book` text NOT NULL,
-  `subject` text NOT NULL,
+  `category` varchar(100) NOT NULL,
   `total` int(2) NOT NULL,
   `start_order` datetime NOT NULL DEFAULT current_timestamp(),
-  `end_order` datetime NOT NULL,
+  `end_order` datetime DEFAULT NULL,
   `returned` int(2) NOT NULL,
   `id_student` int(11) DEFAULT NULL CHECK (`id_student` is not null and `id_professor` is null or `id_student` is null and `id_professor` is not null),
   `id_professor` int(11) DEFAULT NULL CHECK (`id_student` is not null and `id_professor` is null or `id_student` is null and `id_professor` is not null),
@@ -109,11 +109,12 @@ CREATE TABLE `orderes_t` (
 -- Volcado de datos para la tabla `orderes_t`
 --
 
-INSERT INTO `orderes_t` (`id_order`, `book`, `subject`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
+INSERT INTO `orderes_t` (`id_order`, `book`, `category`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
 (1, 'El Sur', 'literatura', 1, '2022-10-26 01:17:46', '2022-10-26 00:00:00', 0, 1, NULL, 1),
 (2, 'El Aleph', 'literatura', 20, '2022-10-26 01:18:15', '2022-10-27 00:00:00', 0, NULL, 1, 2),
 (3, 'Programacion', 'informatica', 1, '2022-10-26 01:19:13', '2022-10-28 00:00:00', 0, 1, NULL, 2),
-(4, 'Atomos', 'Quimica', 2, '2022-10-26 01:22:46', '2022-10-30 00:00:00', 0, 2, NULL, 1);
+(4, 'Atomos', 'Quimica', 2, '2022-10-26 01:22:46', '2022-10-30 00:00:00', 0, 2, NULL, 1),
+(5, 'Programacion Nivel 2', 'Programacion', 10, '2022-10-26 16:58:27', '2022-10-26 00:00:00', 0, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -125,18 +126,17 @@ CREATE TABLE `professores_t` (
   `id_professor` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
+  `code` int(4) NOT NULL,
   `dni` int(10) DEFAULT NULL,
-  `phone` int(10) NOT NULL
+  `phone` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `professores_t`
 --
 
-INSERT INTO `professores_t` (`id_professor`, `name`, `surname`, `dni`, `phone`) VALUES
-(1, 'Carlos', 'Acuña', NULL, 1132266763),
-(2, 'Pablo', 'Pereyra', 45525489, 1132266764),
-(3, 'Dario', 'Martinez', NULL, 1132266765);
+INSERT INTO `professores_t` (`id_professor`, `name`, `surname`, `code`, `dni`, `phone`) VALUES
+(1, 'Carlos', 'Acuña', 0, NULL, 1132266763);
 
 -- --------------------------------------------------------
 
@@ -146,11 +146,11 @@ INSERT INTO `professores_t` (`id_professor`, `name`, `surname`, `dni`, `phone`) 
 
 CREATE TABLE `students_t` (
   `id_student` int(11) NOT NULL,
-  `number` int(4) NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
-  `dni` int(10) DEFAULT NULL,
-  `phone` int(10) NOT NULL,
+  `code` int(4) NOT NULL,
+  `dni` int(10) NOT NULL,
+  `phone` int(10) DEFAULT NULL,
   `id_course` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -158,9 +158,9 @@ CREATE TABLE `students_t` (
 -- Volcado de datos para la tabla `students_t`
 --
 
-INSERT INTO `students_t` (`id_student`, `number`, `name`, `surname`, `dni`, `phone`, `id_course`) VALUES
-(1, 1, 'Jeremias', 'Cuello', 45525488, 1132266763, 21),
-(2, 2, 'Jesus', 'Zerda', NULL, 1132266765, 22);
+INSERT INTO `students_t` (`id_student`, `name`, `surname`, `code`, `dni`, `phone`, `id_course`) VALUES
+(1, 'Jeremias', 'Cuello', 1, 45525488, 1132266763, 22),
+(2, 'Jesus', 'Zerda', 2, 0, 1132266765, 22);
 
 --
 -- Índices para tablas volcadas
@@ -174,9 +174,9 @@ ALTER TABLE `courses_t`
   ADD UNIQUE KEY `course` (`year`,`division`,`modality`) USING BTREE;
 
 --
--- Indices de la tabla `librarianes_t`
+-- Indices de la tabla `librarians_t`
 --
-ALTER TABLE `librarianes_t`
+ALTER TABLE `librarians_t`
   ADD PRIMARY KEY (`id_librarian`),
   ADD UNIQUE KEY `dni` (`dni`),
   ADD UNIQUE KEY `email` (`email`);
@@ -195,15 +195,16 @@ ALTER TABLE `orderes_t`
 --
 ALTER TABLE `professores_t`
   ADD PRIMARY KEY (`id_professor`),
-  ADD UNIQUE KEY `dni` (`dni`),
-  ADD UNIQUE KEY `phone` (`phone`);
+  ADD UNIQUE KEY `phone` (`phone`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
 -- Indices de la tabla `students_t`
 --
 ALTER TABLE `students_t`
   ADD PRIMARY KEY (`id_student`),
-  ADD UNIQUE KEY `number` (`number`),
+  ADD UNIQUE KEY `number` (`code`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `dni` (`dni`),
   ADD KEY `id_courses` (`id_course`);
@@ -219,16 +220,16 @@ ALTER TABLE `courses_t`
   MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de la tabla `librarianes_t`
+-- AUTO_INCREMENT de la tabla `librarians_t`
 --
-ALTER TABLE `librarianes_t`
+ALTER TABLE `librarians_t`
   MODIFY `id_librarian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `orderes_t`
 --
 ALTER TABLE `orderes_t`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `professores_t`
@@ -250,7 +251,7 @@ ALTER TABLE `students_t`
 -- Filtros para la tabla `orderes_t`
 --
 ALTER TABLE `orderes_t`
-  ADD CONSTRAINT `rl_orderes_librarianes` FOREIGN KEY (`id_librarian`) REFERENCES `librarianes_t` (`id_librarian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rl_orderes_librarianes` FOREIGN KEY (`id_librarian`) REFERENCES `librarians_t` (`id_librarian`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rl_orderes_professores` FOREIGN KEY (`id_professor`) REFERENCES `professores_t` (`id_professor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rl_orderes_students` FOREIGN KEY (`id_student`) REFERENCES `students_t` (`id_student`) ON DELETE CASCADE ON UPDATE CASCADE;
 

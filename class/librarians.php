@@ -1,6 +1,6 @@
 <?php
 
-class librarianes{
+class librarians{
   
   public $id;
   public $name;
@@ -22,10 +22,10 @@ class librarianes{
     
     require '../datos/datos.php';
 
-    $librarian_record = datos::queryExecutor("SELECT * FROM `librarianes_t` WHERE `$key` = '$value'");
+    $librarian_record = datos::queryExecutor("SELECT * FROM `librarians_t` WHERE `$key` = '$value'");
 
     // si queryExecutor no es null devuelve los registro sino retorna null
-    return (isset($librarian_record)) ? $librarian_record : null;
+    return (isset($librarian_record)) ? $librarian_record : false;
   }
 
   public function toString(){

@@ -1,15 +1,18 @@
 <?php
 
-  require '../class/librarianes.php';
-  
-  $librarian_record = librarianes::get("id_librarian", 1);
+  require '../class/librarians.php';
+
+  session_start();
+  $librarian = $_SESSION['librarian'];
+
+  $librarian_record = librarians::get("id_librarian", $librarian->id);
   
   if ($librarian_record != false){
-    $librarian = new librarianes($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
-  }
+    $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
+    
+    echo $librarian->toString();
 
-  echo $librarian->toString();
-  echo $librarian->name;
+  }
 
 ?>
 
