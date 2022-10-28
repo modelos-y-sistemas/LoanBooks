@@ -53,7 +53,6 @@ if($_POST){
     <title>~LoanBooks~ | Sesión</title>
 </head>
 <body>
-<<<<<<< HEAD
 
     <?php include '../partials/HTML/header/header.php'; ?>
 
