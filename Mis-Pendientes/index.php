@@ -24,9 +24,90 @@
   <link rel="stylesheet" href="./styles/main.css">
 
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <!-- Bootstrap -->
 </head>
 <body>
-  
+
+<div class="principal justify-content-center">
+
+      <div class="d-flex justify-content-between p-5">
+
+        <div><h2>Hola Ruso!</h2></div>
+
+        <div><h3>Alumno</h3></div>
+
+      </div>
+
+      <div class="container-sm p-4">
+
+      <h1 class="text-center fw-bolder">Mis Pendientes</h1>
+
+        <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Libro</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Bibliotecarie</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <th>12/06/2022</th>
+            <td>programacion II</td>
+            <td>1</td>
+            <td>Edith Soto</td>
+          </tr>
+
+          <tr>
+            <th>26/04/2022</th>
+            <td>Caperucita roja</td>
+            <td>4</td>
+            <td>Edith Soto</td>
+          </tr>
+
+          <tr>
+            <th>22/08/2022</th>
+            <td>Sin nombre</td>
+            <td>1</td>
+            <td>Edith Soto</td>
+          </tr>
+
+        </tbody>
+      </table>
+        
+      </div>
+
+
+    
+
+        <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-secondary">1</button>
+            <button type="button" class="btn btn-outline-secondary">2</button>
+            <button type="button" class="btn btn-outline-secondary">3</button>
+            <button type="button" class="btn btn-outline-secondary">4</button>
+          </div>
+        </div>  
+
+      
+
+
+
+  </div>
+
+
+
+<!-- Boostrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+<!-- Boostrap -->
+
 </body>
 </html>
 
