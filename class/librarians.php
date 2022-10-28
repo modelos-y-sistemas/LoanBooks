@@ -32,8 +32,8 @@ class librarians{
     
     $result = "";
     
-    foreach ($this as $key => $property) {
-      $result .= $key . ": ". $property . "<br>";
+    foreach ($this as $property => $value) {
+      $result .= $property . ": ". $value . "<br>";
     }
 
     return $result;
