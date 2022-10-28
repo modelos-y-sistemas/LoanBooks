@@ -1,3 +1,16 @@
+<?php
+  require '../class/students.php';
+
+  session_start();
+  if(isset($_SESSION['student'])){
+    $student = $_SESSION['student'];
+  }
+  else{
+    header("location: ../");
+  }
+    
+  echo $student->toString();  
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
