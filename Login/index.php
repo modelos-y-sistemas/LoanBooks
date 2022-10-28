@@ -66,42 +66,32 @@ if($_POST){
                 <button class="mainselect" id="studentbtn" onclick="ChangeStudent()">Estudiante</button>
             </center>
         <div class="libform-box">
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" method="post" name="librarian-form">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="librarian-form">
             <div class="insideform">
-            <label for="" name="mail">Correo electrónico</label>
+            <label for="email">Correo electrónico</label>
             <br>
-            <input type="text" class="input">
+            <input type="email" class="input"  name="email">
             <br>
-            <label for="" name="password">Contraseña</label>
+            <label for="password">Contraseña</label>
             <br>
-            <input type="password" class="input">
+            <input type="password" class="input" name="password">
             <br>
             <input type="submit" id="sbmbtn" name="submit" value="Ingresar">
             </div>
             </form>
         </div>
         <div class="std-form-box">
-            <form action="" method="post" name="student-form">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="professor-form">
 
             </form>
+        </div>
+        <div>
+          <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="student-form"></form>
         </div>
     </div>
 
     <?php include "../partials/HTML/footer/footer.php"; ?>
 
     <script src="scripts/mainjs"></script>
-=======
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-      <div class="control">
-        <label for="email">email</label>
-      <input type="email" name="email" id="email">
-    </div>
-    <div class="control">
-      <label for="password">password</label>
-      <input type="text" name="password" id="password">
-    </div>
-    <button type="submit" name="submit" value="librarian">Bibliotecario Login</button>
-  </form>  
->>>>>>> 405abf0392cb1b14aa88cfda8397a0036206b950
 </body>
 </html>
