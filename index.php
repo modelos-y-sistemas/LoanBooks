@@ -40,7 +40,9 @@
   </div>
   
   <div class="container-sm mt-5 p-4">
-    <button type="button" class="btn btn-outline-light">Ver mis Pendientes</button>
+    <a href="./Login/">
+      <button type="button" class="btn btn-outline-light">Ver mis Pendientes</button>
+    </a>
   </div>
   
   
