@@ -1,0 +1,37 @@
+.allnav{
+	margin-top: 2%;
+}
+
+.nav-container{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	background-color: rgb(245, 203, 120);
+	border-radius: 25px;
+}
+
+.nav ul{
+	list-style: none;
+	text-align: center;
+}
+
+.pages > li{
+	display: inline-block;
+	background-color: rgb(165, 106, 42);
+	padding: 2%;
+	cursor: pointer;
+}
+
+.pages > li > a{
+	
+	color: white;
+	font-size: 130%;
+	font-family: 'Open sans';
+	text-decoration: none;
+}
+
+li:hover{
+	background-color: rgb(245, 203, 120);
+	border-radius: 20px;
+	transition: all 1s;
+}

@@ -1,0 +1,25 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.header{
+	background-color: rgb(165, 106, 42);
+}
+
+.tthead-container{
+	text-align: center;
+}
+
+.title{
+	color: yellow;
+	font-size: 150%;
+	font-family: 'Buxton Sketch';
+}
+
+.ttlibrary{
+	color: yellow;
+	font-size: 300%;
+	font-family: 'Blackadder ITC';
+}

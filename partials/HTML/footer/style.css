@@ -1,0 +1,24 @@
+
+.footer{
+	position: relative;
+	margin-top: 3%;
+	height: 150px;
+	width: 100%;
+	background-color: rgb(165, 106, 42);
+	color: yellow;
+	font-family: 'Consolas';
+}
+
+
+
+.text{
+	margin-left: 18%;
+	text-decoration: none;
+	color: yellow;
+}
+
+.web-icon{
+	height: 15%;
+	filter:  saturate(6000%) sepia(120%) brightness(120%);
+	cursor: pointer;
+}
