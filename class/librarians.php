@@ -28,6 +28,15 @@ class librarians{
     return (isset($librarian_record)) ? $librarian_record : false;
   }
 
+  public function signup(){
+    
+    require_once '../datos/datos.php';
+
+    //se inserta el nuevo bibliotecario en la base de datos
+    datos::queryExecutor("INSERT INTO 'librarians_t' (name, surname, dni, email, password) VALUES ('$name', '$surname', $dni, '$email', '$password')");
+
+  }
+
   public function toString(){
     
     $result = "";

@@ -1,5 +1,4 @@
 <?php
-//Esto es uan base para adelantar el trabajo, aun requiere muchas mejoras y validaciones
 
 if($_POST){
   
@@ -21,7 +20,7 @@ if($_POST){
         
         $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
         
-        //almaceno la variable de session user_id
+        //almaceno el objeto bibliotecario
         session_start();
         $_SESSION['librarian'] = $librarian;
         
@@ -31,7 +30,6 @@ if($_POST){
       }
       else{ echo "Email o password incorrectos"; }
       break;
-    
     case 'student':
       
       break;
