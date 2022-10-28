@@ -3,16 +3,14 @@
   require '../class/librarians.php';
 
   session_start();
-  $librarian = $_SESSION['librarian'];
-
-  $librarian_record = librarians::get("id_librarian", $librarian->id);
-  
-  if ($librarian_record != false){
-    $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
-    
-    echo $librarian->toString();
-
+  if(isset($_SESSION['librarian'])){
+    $librarian = $_SESSION['librarian'];
   }
+  else{
+    header("location: ../");
+  }
+    
+  echo $librarian->toString();  
 
 ?>
 
@@ -31,6 +29,8 @@
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
 </head>
 <body>
-  
+  <a href="../partials/logout.php">
+    <button> salir </button>
+  </a>
 </body>
 </html>
