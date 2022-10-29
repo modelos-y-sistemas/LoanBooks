@@ -19,10 +19,10 @@ if($_POST){
 
       //almaceno el objeto bibliotecario
       session_start();
-      $_SESSION['librarian']=$librarian;
+      $_SESSION['librarians']=$librarian;
 
       //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
-      header("Location: ../Buscar-y-Recibir");
+      header("Location: ../Prestar");
       break;
   }
 }
@@ -43,7 +43,19 @@ if($_POST){
 </head>
 <body>
   <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-    
+    <label for="name">Nombre/s</label>
+    <input type="text" name="name" id="name">
+    <label for="surname">Apellido/s</label>
+    <input type="text" name="surname" id="surname">
+    <label for="dni">DNI</label>
+    <input type="number" name="dni" id="dni">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+    <label for="password">Contraseña</label>
+    <input type="password" name="password" id="password">
+    <label for="repassword">Repetir contraseña</label>
+    <input type="password" name="repassword" id="repasswrd">
+    <input type="submit" name="submit" value="librarian">
   </form>
 </body>
 </html>

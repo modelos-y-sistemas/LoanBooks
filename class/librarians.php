@@ -9,8 +9,8 @@ class librarians{
   public $email;
   public $password;
   
-  public function __construct($id = 0, $name = "n/n", $surname = "n/n", $dni = null, $email = "nn@nn.com", $password = "n/n"){
-    $this->id = $id;
+  public function __construct(/*$id = 0,POR QUE ID???*/$name = "n/n", $surname = "n/n", $dni = null, $email = "nn@nn.com", $password = "n/n"){
+    //$this->id = $id;
     $this->name = $name;
     $this->surname = $surname;
     $this->dni = $dni;
@@ -31,9 +31,10 @@ class librarians{
   public function signup(){
     
     require_once '../datos/datos.php';
-
+    //Hasheando la password
+    $password_hashed=password_hash($this->password, PASSWORD_BCRYPT);
     //se inserta el nuevo bibliotecario en la base de datos
-    $query = "INSERT INTO 'librarians_t' (`name`, `surname`, `dni`, `email`, `password`) VALUES ('$this->name', '$this->surname', $this->dni, '$this->email', '$this->password')";
+    $query = "INSERT INTO librarians_t (`name`, `surname`, `dni`, `email`, `password`) VALUES ('$this->name', '$this->surname', '$this->dni', '$this->email', '$password_hashed')";
     echo $query;
     datos::queryExecutor($query);
 

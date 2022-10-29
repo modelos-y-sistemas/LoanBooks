@@ -42,10 +42,11 @@ if($_POST){
       $librarian_record = librarians::get("email", $input_email);
       
       // lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
-      if($librarian_record && $librarian_record->password == $input_password)
+      if($librarian_record && password_verify($input_password ,$librarian_record->password)/*$librarian_record->password == $input_password*/)
       {
-      $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
-      
+      $librarian = new librarians(/*$librarian_record->id_librarian, */$librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
+      //ENSERIO PARA QUE EL ID EN EL CONSTRUCTOR???
+
       //almaceno la variable de session user_id
       $_SESSION['librarians'] = $librarian;
       
