@@ -1,15 +1,25 @@
 <?php
+  
   require '../class/students.php';
-
+  require '../class/professores.php';
+  
   session_start();
-  if(isset($_SESSION['student'])){
+  if(isset($_SESSION['professor'])){
+    $professor = $_SESSION['professor'];
+  }
+  elseif(isset($_SESSION['student'])){
     $student = $_SESSION['student'];
+  }
+  elseif(isset($_SESSION['librarian'])) {
+    header('location: ../Buscar-y-Recibir');
   }
   else{
     header("location: ../");
   }
-    
-  echo $student->toString();  
+  
+  if(isset($professor)) echo $professor->toString();
+  if(isset($student)) echo $student->toString();
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,6 +49,10 @@
         <div><h2>Hola Ruso!</h2></div>
 
         <div><h3>Alumno</h3></div>
+
+        <a href="../partials/logout.php">
+          <button> salir </button>
+        </a>
 
       </div>
 
