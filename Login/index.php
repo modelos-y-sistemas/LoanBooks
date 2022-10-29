@@ -27,8 +27,6 @@ if($_POST){
   
   $rol = $_POST['rol'];
   
-  echo $rol;
-
   if (!in_array($rol, $rols)) die('Rol invalido');
   
   // $rol es igual al nombre del archivo de la clase del rol elegido
@@ -61,7 +59,6 @@ if($_POST){
     case "students":
     {
       $student_code = $_POST['student-code'];
-      echo $student_code;
       $student_record = students::get("code", $student_code);
 
       if($student_record){
