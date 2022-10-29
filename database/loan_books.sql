@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2022 a las 21:21:58
+-- Tiempo de generación: 29-10-2022 a las 22:36:23
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -110,12 +110,12 @@ CREATE TABLE `orders_t` (
 --
 
 INSERT INTO `orders_t` (`id_order`, `book`, `category`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
-(1, 'El Sur', 'literatura', 1, '2022-10-26 01:17:46', '2022-10-26 00:00:00', 1, 1, NULL, 1),
-(2, 'El Aleph', 'literatura', 20, '2022-10-26 01:18:15', '2022-10-27 00:00:00', 0, NULL, 1, 2),
-(3, 'Programacion', 'informatica', 1, '2022-10-26 01:19:13', '2022-10-28 00:00:00', 0, 1, NULL, 2),
-(4, 'Atomos', 'Quimica', 2, '2022-10-26 01:22:46', '2022-10-30 00:00:00', 0, 2, NULL, 1),
-(5, 'Programacion Nivel 2', 'Programacion', 10, '2022-10-26 16:58:27', '2022-10-26 00:00:00', 0, NULL, 1, 1),
-(6, 'Blanca Nieves', 'literatura', 15, '2022-10-29 15:51:54', NULL, 1, NULL, 1, 2),
+(1, 'El Sur', 'literatura', 1, '2022-10-26 01:17:46', '2022-10-27 00:00:00', 1, 1, NULL, 1),
+(2, 'El Aleph', 'literatura', 20, '2022-10-26 01:18:15', NULL, 0, NULL, 1, 2),
+(3, 'Programacion', 'informatica', 1, '2022-10-26 01:19:13', NULL, 0, 1, NULL, 2),
+(4, 'Atomos', 'Quimica', 2, '2022-10-26 01:22:46', '2022-10-30 00:00:00', 1, 2, NULL, 1),
+(5, 'Programacion Nivel 2', 'Programacion', 10, '2022-10-26 16:58:27', NULL, 0, NULL, 1, 1),
+(6, 'Blanca Nieves', 'literatura', 15, '2022-10-29 15:51:54', '2022-10-29 00:00:00', 1, NULL, 1, 2),
 (7, 'La princesa y el Sapo', 'literatura', 20, '2022-10-29 15:52:54', NULL, 0, NULL, 4, 2);
 
 -- --------------------------------------------------------
