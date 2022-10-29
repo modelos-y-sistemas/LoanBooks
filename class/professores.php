@@ -20,7 +20,7 @@ class professores{
 
   public static function get($key, $value){
   
-    require '../datos/datos.php';
+    require_once '../datos/datos.php';
   
     $professor_record = datos::queryExecutor("SELECT * FROM `professores_t` WHERE `$key` = '$value'");
   
