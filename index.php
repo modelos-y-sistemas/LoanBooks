@@ -1,3 +1,16 @@
+<?php
+session_start();
+if($_SESSION){
+  $roles = ['librarian', 'professor', 'student'];
+  $paths = ['https://localhost/LoanBooks/Buscar-y-Recibir', 'https://localhost/LoanBooks/Mis-Pendientes', 'https://localhost/LoanBooks/Mis-Pendientes'];
+  
+  foreach ($roles as $key => $rol) {
+    if($_SESSION[$rol]){
+      header("location: $paths[$key]");
+    }
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,7 +40,7 @@
 <div class="principal justify-content-center">
 
   <div class="container-sm p-5">
-    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACION SECUNDARIA TECNICA N`5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
+    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACION SECUNDARIA TECNICA N°5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
   </div>
   
   
