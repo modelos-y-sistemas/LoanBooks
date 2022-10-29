@@ -40,6 +40,24 @@ class students{
   
     return $result;
   }
+
+  public function get_pending_books(){
+    
+    require_once "../datos/datos.php";
+
+    $query = "
+    SELECT
+      `orders_t`.`start_order` AS 'Fecha',
+      `orders_t`.`book` AS 'Libro',
+      `orders_t`.`total` AS 'Cantidad',
+      `librarians_t`.`name` AS 'Bibliotecarie'
+    FROM `orders_t` LEFT JOIN `librarians_t`
+      ON `orders_t`.`id_librarian` = `librarians_t`.`id_librarian`
+    WHERE `orders_t`.`id_student` = '$this->id_student' AND `orders_t`.`returned` = '0'
+    ";
+
+    return datos::queryExecutor($query, true);
+  }
 }
 
 ?>

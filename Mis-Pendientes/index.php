@@ -1,14 +1,17 @@
 <?php
   
+  $i = 0;
   require '../class/students.php';
   require '../class/professors.php';
   
   session_start();
   if(isset($_SESSION['professors'])){
     $professor = $_SESSION['professors'];
+    $books_pending = $professor->get_pending_books();
   }
   elseif(isset($_SESSION['students'])){
     $student = $_SESSION['students'];
+    $books_pending = $student->get_pending_books();
   }
   elseif(isset($_SESSION['librarians'])) {
     header('location: ../Buscar-y-Recibir');
@@ -16,9 +19,6 @@
   else{
     header("location: ../");
   }
-  
-  // if(isset($professor)) echo $professor->toString();
-  // if(isset($student)) echo $student->toString();
   
 ?>
 <!DOCTYPE html>
@@ -61,35 +61,20 @@
         <table class="table mt-5">
         <thead>
           <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">Libro</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Bibliotecarie</th>
+          <?php foreach ($books_pending[0] as $key => $data):?>
+            <th scope='col'> <?= $key ?> </th>
+          <?php endforeach;?>
           </tr>
         </thead>
         <tbody>
-
-          <tr>
-            <th>12/06/2022</th>
-            <td>programacion II</td>
-            <td>1</td>
-            <td>Edith Soto</td>
-          </tr>
-
-          <tr>
-            <th>26/04/2022</th>
-            <td>Caperucita roja</td>
-            <td>4</td>
-            <td>Edith Soto</td>
-          </tr>
-
-          <tr>
-            <th>22/08/2022</th>
-            <td>Sin nombre</td>
-            <td>1</td>
-            <td>Edith Soto</td>
-          </tr>
-
+          <?php foreach ($books_pending as $key => $book_pending):?>
+            <tr>
+              <?php foreach ($book_pending as $key => $data):?>
+                <td> <?= $data ?> </td>
+              <?php endforeach;?>
+            </tr>
+          <?php endforeach;?>
+            
         </tbody>
       </table>
         
@@ -122,4 +107,3 @@
 
 </body>
 </html>
-

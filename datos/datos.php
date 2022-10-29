@@ -12,6 +12,7 @@ class datos{
       // la funcion fetchAll devuelve un arreglo de registros
       // en cambio la funcion fetch, a secas (sin 'All'), devuelve solo un registro por mas
       // que la query devuelva mas de uno, ira por el primero.
+      // si no hay registros de la query, tanto fetchAll como fetch devuelve false.
   
       return ($result) ? $stmt->fetchAll(PDO::FETCH_OBJ) : $stmt->fetch(PDO::FETCH_OBJ);
     }
