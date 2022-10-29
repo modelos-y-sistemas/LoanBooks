@@ -3,8 +3,8 @@
 require '../class/librarians.php';
 
 session_start();
-if(isset($_SESSION['librarian'])){
-  $librarian = $_SESSION['librarian'];
+if(isset($_SESSION['librarians'])){
+  $librarian = $_SESSION['librarians'];
 }
 else{
   header("location: ../");

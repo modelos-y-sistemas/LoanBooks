@@ -1,16 +1,16 @@
 <?php
   
   require '../class/students.php';
-  require '../class/professores.php';
+  require '../class/professors.php';
   
   session_start();
-  if(isset($_SESSION['professor'])){
-    $professor = $_SESSION['professor'];
+  if(isset($_SESSION['professors'])){
+    $professor = $_SESSION['professors'];
   }
-  elseif(isset($_SESSION['student'])){
-    $student = $_SESSION['student'];
+  elseif(isset($_SESSION['students'])){
+    $student = $_SESSION['students'];
   }
-  elseif(isset($_SESSION['librarian'])) {
+  elseif(isset($_SESSION['librarians'])) {
     header('location: ../Buscar-y-Recibir');
   }
   else{

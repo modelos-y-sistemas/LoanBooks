@@ -18,12 +18,12 @@ class professors{
 
   public static function get($key, $value){
   
-    require '../datos/datos.php';
+    require_once '../datos/datos.php';
   
-    $professors = datos::queryExecutor("SELECT * FROM `professors_t` WHERE `$key` = '$value'");
+    $professor_record = datos::queryExecutor("SELECT * FROM `professors_t` WHERE `$key` = '$value'");
   
     // si queryExecutor no es null devuelve los registro sino retorna null
-    return (isset($professors)) ? $professors_record : null;
+    return (isset($professor_record)) ? $professor_record : null;
     }
   
   public function toString(){
