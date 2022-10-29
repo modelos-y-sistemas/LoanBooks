@@ -33,7 +33,9 @@ class librarians{
     require_once '../datos/datos.php';
 
     //se inserta el nuevo bibliotecario en la base de datos
-    datos::queryExecutor("INSERT INTO 'librarians_t' (name, surname, dni, email, password) VALUES ('$name', '$surname', $dni, '$email', '$password')");
+    $query = "INSERT INTO 'librarians_t' (`name`, `surname`, `dni`, `email`, `password`) VALUES ('$this->name', '$this->surname', $this->dni, '$this->email', '$this->password')";
+    echo $query;
+    datos::queryExecutor($query);
 
   }
 
