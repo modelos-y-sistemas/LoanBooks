@@ -17,8 +17,8 @@
     header("location: ../");
   }
   
-  if(isset($professor)) echo $professor->toString();
-  if(isset($student)) echo $student->toString();
+  // if(isset($professor)) echo $professor->toString();
+  // if(isset($student)) echo $student->toString();
   
 ?>
 <!DOCTYPE html>
@@ -46,10 +46,8 @@
 
       <div class="d-flex justify-content-between p-5">
 
-        <div><h2>Hola Ruso!</h2></div>
-
-        <div><h3>Alumno</h3></div>
-
+        <div><h2>Hola <?= isset($professor) ? $professor->name : ( isset($student) ? $student->name : ""); ?>!</h2></div>
+        <div><h3><?= isset($professor) ? "Profesor" : (isset($student) ? "Alumno" : "") ?></h3></div>
         <a href="../partials/logout.php">
           <button> salir </button>
         </a>
