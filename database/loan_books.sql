@@ -92,7 +92,7 @@ INSERT INTO `librarians_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, `
 -- Estructura de tabla para la tabla `orderes_t`
 --
 
-CREATE TABLE `orderes_t` (
+CREATE TABLE `orders_t` (
   `id_order` int(11) NOT NULL,
   `book` text NOT NULL,
   `category` varchar(100) NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE `orderes_t` (
 -- Volcado de datos para la tabla `orderes_t`
 --
 
-INSERT INTO `orderes_t` (`id_order`, `book`, `category`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
+INSERT INTO `orders_t` (`id_order`, `book`, `category`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
 (1, 'El Sur', 'literatura', 1, '2022-10-26 01:17:46', '2022-10-26 00:00:00', 0, 1, NULL, 1),
 (2, 'El Aleph', 'literatura', 20, '2022-10-26 01:18:15', '2022-10-27 00:00:00', 0, NULL, 1, 2),
 (3, 'Programacion', 'informatica', 1, '2022-10-26 01:19:13', '2022-10-28 00:00:00', 0, 1, NULL, 2),
@@ -122,7 +122,7 @@ INSERT INTO `orderes_t` (`id_order`, `book`, `category`, `total`, `start_order`,
 -- Estructura de tabla para la tabla `professores_t`
 --
 
-CREATE TABLE `professores_t` (
+CREATE TABLE `professors_t` (
   `id_professor` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `professores_t` (
 -- Volcado de datos para la tabla `professores_t`
 --
 
-INSERT INTO `professores_t` (`id_professor`, `name`, `surname`, `code`, `dni`, `phone`) VALUES
+INSERT INTO `professors_t` (`id_professor`, `name`, `surname`, `code`, `dni`, `phone`) VALUES
 (1, 'Carlos', 'Acuña', 0, NULL, 1132266763);
 
 -- --------------------------------------------------------
@@ -184,16 +184,16 @@ ALTER TABLE `librarians_t`
 --
 -- Indices de la tabla `orderes_t`
 --
-ALTER TABLE `orderes_t`
+ALTER TABLE `orders_t`
   ADD PRIMARY KEY (`id_order`),
-  ADD KEY `rl_orderes_librarianes` (`id_librarian`),
-  ADD KEY `rl_orderes_professores` (`id_professor`),
-  ADD KEY `rl_orderes_students` (`id_student`);
+  ADD KEY `rl_orders_librarians` (`id_librarian`),
+  ADD KEY `rl_orders_professors` (`id_professor`),
+  ADD KEY `rl_orders_students` (`id_student`);
 
 --
 -- Indices de la tabla `professores_t`
 --
-ALTER TABLE `professores_t`
+ALTER TABLE `professors_t`
   ADD PRIMARY KEY (`id_professor`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `code` (`code`),
@@ -228,13 +228,13 @@ ALTER TABLE `librarians_t`
 --
 -- AUTO_INCREMENT de la tabla `orderes_t`
 --
-ALTER TABLE `orderes_t`
+ALTER TABLE `orders_t`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `professores_t`
 --
-ALTER TABLE `professores_t`
+ALTER TABLE `professors_t`
   MODIFY `id_professor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -250,10 +250,10 @@ ALTER TABLE `students_t`
 --
 -- Filtros para la tabla `orderes_t`
 --
-ALTER TABLE `orderes_t`
-  ADD CONSTRAINT `rl_orderes_librarianes` FOREIGN KEY (`id_librarian`) REFERENCES `librarians_t` (`id_librarian`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rl_orderes_professores` FOREIGN KEY (`id_professor`) REFERENCES `professores_t` (`id_professor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rl_orderes_students` FOREIGN KEY (`id_student`) REFERENCES `students_t` (`id_student`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `orders_t`
+  ADD CONSTRAINT `rl_orders_librarianes` FOREIGN KEY (`id_librarian`) REFERENCES `librarians_t` (`id_librarian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rl_orders_professors` FOREIGN KEY (`id_professor`) REFERENCES `professors_t` (`id_professor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rl_orders_students` FOREIGN KEY (`id_student`) REFERENCES `students_t` (`id_student`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `students_t`

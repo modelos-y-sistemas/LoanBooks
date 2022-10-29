@@ -11,38 +11,146 @@ body{
 }
 
 .mainbox{
-  display: grid;
-  justify-content: center;
-  justify-items: center;
-  grid-template-rows: repeat(3, auto);
-  gap: 20px;
-  align-items: center;
-  align-content: center;
-  padding: 20px;
-  
-  background-color: whitesmoke;
-  font-family: 'Arial';
+	position: relative;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: 1000px;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    font-family: 'Arial';
 }
 
-.controles-rol{
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-  .control-rol__label{
-    padding: 5px;
-    font-size: 150%;
-    border-width: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: gray;
-  }
-  .control-rol__label-active{
-    background-color: rgb(202, 162, 52);
-  }
-
-.form{
+.mainselect{
+  margin-top: 5%;
+  margin-left: 1%;
+  height: 45px;
+  width: 20%;
   font-size: 150%;
+  border-width: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.Message{
+	position: absolute;
+	margin-top: 9%;
+	margin-left: 27%;
+  	color: rgb(156, 153, 153);
+  	font-family: 'Cambria';
+	font-size: 400%;
+  	font-weight: bold;
+}
+
+#librarianbtn{
+  background-color: rgb(165, 106, 42);
+  color: rgb(245, 203, 120);
+  border-color: rgb(245, 203, 120);
+}
+
+#professorbtn{
+  background-color: rgb(0, 102, 255);
+  color: rgb(255, 230, 37);
+  border-color: rgb(255, 230, 37);
+}
+
+#studentbtn{
+  background-color: rgb(27, 170, 72);
+  color: rgb(37, 197, 255);
+  border-color: rgb(37, 197, 255);
+}
+
+#librarianbtn:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+  border-color: rgb(245, 203, 120);
+}
+
+
+#professorbtn:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+  border-color: rgb(245, 203, 120);
+}
+
+
+#studentbtn:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+  border-color: rgb(245, 203, 120);
+}
+
+.insideform{
+	position: absolute;
+	margin-left: 15%;
+	margin-top: 6%;
+	font-size: 150%;
+}
+
+#password-box{
+	position: absolute;
+	margin-top: -32.5%;
+	margin-left: 130%;
+}
+
+.sbmbtn{
+  margin-top: 10%;
+  margin-left: 98%;
+  height: 40px;
+  width: 120px;
+  background-color: rgb(165, 106, 42);
+  color: rgb(245, 203, 120);
+  font-size: 90%;
+  border-radius: 20px;
+  border-width: 5px;
+  border-color: rgb(245, 203, 120);;
+  cursor: pointer;
+}
+
+#sbm-2{
+	margin-top: 8.2% ;
+	margin-left: 88.9%;
+}
+
+#sbm-3{
+	margin-top: 7%;
+	margin-left: 83.2%;
+}
+
+.sbmbtn:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+}
+
+label{
+  color: rgb(156, 153, 153);
+  font-weight: bold;
+}
+
+.lib-form-box{
+	display: none;
+}
+
+.pfs-form-box{
+	display: none;
+}
+
+.std-form-box{
+	display: none;
+}
+
+.input{
+  margin-bottom: 10%;
+  height: 40px;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid rgb(156, 153, 153);
+  border-width: 2px;
+  background: transparent;
+  outline: none;
+  color: rgb(53, 53, 53);
+  font-size: 15px;
 }
   .control__label{
     color: rgb(156, 153, 153);

@@ -23,26 +23,22 @@ function escape_string_sql($str){
 
 if($_POST){
   
-  $roles = ["students", "professores", "librarians"];
-  $rol = $_POST['rol'];
-  
-  if (!in_array($rol, $roles)) die('Rol invalido');
-  
-  // $rol es igual al nombre del archivo de la clase del rol elegido
-  require "../class/" . $rol . ".php"; // por lo tanto, se va a requerir del archivo del rol elegido
-  
-  switch($rol) {
-    case "librarians":
-    {
-      $input_email = escape_string_sql($_POST['email']);
-      $input_password = escape_string_sql($_POST['password']);
+  switch ($_POST['submit']) {
+    case 'submitlbn':
+      //accedo a la clase librarians
+      require "../class/librarians.php";
+      
+      //obtencion de los datos del formulario de login de bibliotecario
+      $input_email = $_POST['email'];
+      $input_password = $_POST['password'];
+      $librarian_record = null;
 
-      // obtengo el registro del bibliotecario por su email 
+      //obtengo el bibliotecario por su email 
       $librarian_record = librarians::get("email", $input_email);
       
-      // lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
-      if($librarian_record && $librarian_record->password == $input_password)
-      {
+      //lo valido con su contraseña (Esto deberia ser con password_verify pero falta encriptar la contraseña)
+      if($librarian_record && $librarian_record->password == $input_password){
+        
         $librarian = new librarians($librarian_record->id_librarian, $librarian_record->name, $librarian_record->surname, $librarian_record->dni, $librarian_record->email, $librarian_record->password);
         
         //almaceno la variable de session user_id
@@ -50,60 +46,41 @@ if($_POST){
         
         //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
         header("Location: ../Buscar-y-Recibir");
+        
       }
-      else { echo "Email o password incorrectos"; }
+      else{ echo "Email o contraseña incorrectos"; }
 
       break;
-    }
-    case "students":
-    {
-      $student_code = $_POST['student-code'];
-      echo $student_code;
-      $student_record = students::get("code", $student_code);
+    case 'student':
+      
+      break;
 
-      var_dump($student_record);
+    case 'submitstd':
+      
+      require "../class/students.php";
 
-      if($student_record){
+      $input_code = $_POST['stdcod'];
+      
+      $student_record = students::get("code",$input_code);
+
+      if($students_record == $input_code){
+
         $student = new students($student_record->id_student, $student_record->name, $student_record->surname, $student_record->code, $student_record->dni, $student_record->phone, $student_record->id_course);
-        
-        var_dump($student);
 
-        $_SESSION['student'] = $student;
-        
-        var_dump($_SESSION['student']);
+        session_start();
+        $SESSION['student'] = $student;
 
-        header("Location: ../Mis-Pendientes");
-      }
-      else{
-        echo "Código incorrecto";
+        header("Location: ../Buscar-y-Recibir");
       }
 
-      break;
-    }
-    case 'professores':
-    {
-      $professor_code = $_POST['professor-code'];
-      $professor_record = professores::get("code", $professor_code);
+      else{ echo "Clave incorrecta o estudiante no encontrado"; }
       
-      if($professor_record){
-        $professor = new professores($professor_record->id_professor, $professor_record->name, $professor_record->surname, $professor_record->code, $professor_record->dni, $professor_record->phone);
-      
-        $_SESSION['professor'] = $professor;
-
-        var_dump($_SESSION['professor']);
-
-        header("Location: ../Mis-Pendientes");
-      }
-      else{
-        echo "Código incorrecto";
-      }
-
       break;
-    }
   }
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,53 +95,59 @@ if($_POST){
 </head>
 <body>
 
-  <?php include '../partials/HTML/header/header.php'; ?>
-  <?php include '../partials/HTML/nav/nav.php'; ?>
-  
-  <div class="mainbox">
-    <div class="controles-rol">
-      <div class="control-rol">
-        <label class="control-rol__label" id="label__rol-librarians" for="input__rol-librarians">Bibliotecario</label>
-        <input hidden type="radio" name="rol" id="input__rol-librarians">
-      </div>
-      <div class="control-rol">
-        <label class="control-rol__label" id="label__rol-professores" for="input__rol-professores">Profesor</label>
-        <input hidden type="radio" name="rol" id="input__rol-professores">
-      </div>
-      <div class="control-rol">
-        <label class="control-rol__label" id="label__rol-students" for="input__rol-students">Estudiante</label>
-        <input hidden type="radio" name="rol" id="input__rol-students">
-      </div>
+    <?php include '../partials/HTML/header/header.php'; ?>
+
+    <?php include '../partials/HTML/nav/nav.php'; ?>
+    
+    <div class="mainbox">
+            <center>
+                <button class="mainselect" id="librarianbtn" onclick="ChangeLibrarian()">Bibliotecario</button>
+                <button class="mainselect" id="professorbtn" onclick="ChangeProfessor()">Profesor</button>
+                <button class="mainselect" id="studentbtn" onclick="ChangeStudent()">Estudiante</button>
+            </center>
+                      <h1 class="Message">IDENTIFÍQUESE</h1>
+        <div class="lib-form-box">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="librarian-form">
+            <div class="insideform">
+              <label for="email">Correo electrónico</label>
+              <br>
+              <input type="email" class="input"  name="email">
+              <br>
+              <div id="password-box">
+              <label for="password">Contraseña</label>
+              <br>
+              <input type="password" class="input" name="password">
+              </div>
+              <input type="submit" class="sbmbtn" name="submitlbn" value="Ingresar">
+            </div>
+            </form>
+        </div>
+        <div class="pfs-form-box">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="professor-form">
+            <div class="insideform">
+              <label for="cod">Clave de ingreso de profesor</label>
+              <br>
+              <input type="text" class="input" name="pfscod">
+              <br>
+              <input type="submit" class="sbmbtn" id="sbm-2" name="submitpfs" value="Ingresar">
+            </div>
+            </form>
+        </div>
+        <div class="std-form-box">
+          <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="student-form">
+            <div class="insideform">
+              <label for="cod">Clave de ingreso de estudiante</label>
+              <br>
+              <input type="text" class="input" name="stdcod">
+              <br>
+              <input type="submit" class="sbmbtn" id="sbm-3" name="submitstd" value="Ingresar">
+            </div>
+          </form>
+        </div>
     </div>
-    <form class="form" id="form-librarians" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" hidden>
-      <div class="control">
-        <label class="control__label" for="email">Correo electrónico</label>
-        <input class="control__input" id ="email" type="email" name="email" autofocus>
-      </div>
-      <div class="control">
-        <label class="control__label" for="password">Password</label>
-        <input class="control__input" id ="password" type="password" name="password">
-      </div>
-      <button class="submit" type="submit" value="librarians" for="form-librarians" name="rol"> Ingresar </button>
-    </form>
-    <form class="form" id="form-students" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" hidden>
-      <div class="control">
-        <label class="control__label" for="student-code">Código</label>
-        <input class="control__input" id ="student-code" type="number" name="student-code" autofocus>
-      </div>
-      <button class="submit" type="submit" value="students" for="form-students" name="rol"> Ingresar </button>
-    </form>
-    <form class="form" id="form-professores" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" hidden>
-      <div class="control">
-        <label class="control__label" for="professor-code">Código</label>
-        <input class="control__input" id ="professor-code" type="number" name="professor-code" autofocus>
-      </div>
-      <button class="submit" type="submit" value="professores" for="form-professores" name="rol"> Ingresar </button>
-    </form>
-  </div>
 
   <?php include "../partials/HTML/footer/footer.php"; ?>
 
-  <script src="./scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

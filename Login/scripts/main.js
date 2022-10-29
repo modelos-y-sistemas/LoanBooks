@@ -1,37 +1,33 @@
-let form = {
-  student: document.querySelector("#form-students"),
-  professor: document.querySelector("#form-professores"),
-  librarian: document.querySelector("#form-librarians")
+const btnclbn = document.getElementById('.librarianbtn');
+const btncpfs = document.getElementById('.professorbtn');
+const btncstd = document.getElementById('.studentbtn');
+
+const Lbnform = document.querySelector('.lib-form-box');
+const Pfsform = document.querySelector('.pfs-form-box');
+const Stdform = document.querySelector('.std-form-box');
+
+const msg = document.querySelector('.Message');
+
+function ChangeLibrarian(){
+    Lbnform.style.display = "block";
+    Pfsform.style.display = "none";
+    Stdform.style.display = "none";
+    msg.style.display = "none";
 }
 const inputs_HTML = document.querySelectorAll("input[type = 'radio']");
 let checkes = [];
 // let submit = document.querySelector("button[type = submit]");
 
-const ChangeRol = () => {
-  
-  checkes = [];
-  let label = null;
-
-  inputs_HTML.forEach( input_HTML => {
-    
-    label = document.querySelector(`#${input_HTML.id.replace("input", "label")}`);
-    if(input_HTML.checked){  
-      label.classList.add('control-rol__label-active');
-      /* submit.value = input_HTML.id.substring(input_HTML.id.lastIndexOf('-') + 1);
-      submit.for = `form-${submit.value}`; */
-      
-      for (const key in form) {
-        let element = form[key];
-        element.hidden = !(element.id === `form-${input_HTML.id.substring(input_HTML.id.lastIndexOf('-') + 1)}`);
-      }
-    }else {
-      label.classList.remove('control-rol__label-active');
-    }
-    
-    checkes.push(input_HTML.checked);
-  });
+function ChangeProfessor(){
+    Lbnform.style.display = "none";
+    Pfsform.style.display = "block";
+    Stdform.style.display = "none";
+    msg.style.display = "none";
 }
 
-inputs_HTML.forEach((input_HTML) => {
-  input_HTML.addEventListener("change", ChangeRol);
-});
+function ChangeStudent(){
+    Lbnform.style.display = "none";
+    Pfsform.style.display = "none";
+    Stdform.style.display = "block";
+    msg.style.display = "none";
+}
