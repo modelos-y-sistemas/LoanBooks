@@ -40,7 +40,6 @@
   <!-- Bootstrap -->
 </head>
 <body>
-
   <div class="principal justify-content-center">
     <div class="d-flex justify-content-between p-5">
       <div>
@@ -60,20 +59,29 @@
       </div>
     </div>
     <?php if(count($books_pending) > 0):?>
+      <!-- Si tiene libros pendientes muestra la tabla y los botones de paginacion -->
       <div class="container-sm p-4">
         <h1 class="text-center fw-bolder">Mis Pendientes</h1>
         <table class="table mt-5">
           <thead>
             <tr>
               <?php foreach ($books_pending[0] as $key => $data):?>
+                <!-- imprime todas las columnas de la query en professors::get_pending_books -->
+                <!-- imprime todas las $key (claves o posiciones (string)) de los datos de un libro
+                     EJ: un libro (objeto) tiene
+                        libro['VariableNombre']. 'VariableNombre' -> key: es la clave para acceder al valor del nombre -> libro['VariableNombre']
+                     y es por esa $key que yo accedo a los distintos $data del primero libro -> $books_pending[0].
+                 -->
                 <th scope='col'> <?= $key ?> </th>
               <?php endforeach;?>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($books_pending as $key => $book_pending):?>
+            <?php foreach ($books_pending as $book_pending):?>
+              <!-- por cada libro: -->
               <tr>
-                <?php foreach ($book_pending as $key => $data):?>
+                <?php foreach ($book_pending as $data):?>
+                  <!-- imprime los datos -->
                   <td> <?= $data ?> </td>
                 <?php endforeach;?>
               </tr>
@@ -90,9 +98,9 @@
         </div>
       </div>
       <?php else:?>
+        <!-- Sino muestra un mensaje de que no tiene libros -->
         <h3>Vaya, parece que ya no tenes libros pendientes para entregar </h3>
       <?php endif;?>
-
   </div>
 
   <!-- Boostrap -->
