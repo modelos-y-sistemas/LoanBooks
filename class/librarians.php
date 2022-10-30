@@ -9,8 +9,8 @@ class librarians{
   public $email;
   public $password;
   
-  public function __construct(/*$id = 0,POR QUE ID???*/$name = "n/n", $surname = "n/n", $dni = null, $email = "nn@nn.com", $password = "n/n"){
-    //$this->id = $id;
+  public function __construct($id = 0, $name = "n/n", $surname = "n/n", $dni = null, $email = "nn@nn.com", $password = "n/n"){
+    $this->id = $id;
     $this->name = $name;
     $this->surname = $surname;
     $this->dni = $dni;

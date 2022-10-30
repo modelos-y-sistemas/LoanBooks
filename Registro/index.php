@@ -12,14 +12,14 @@ if($_POST){
       $password = $_POST['password'];
 
       //creacion de objeto bibliotecario
-      $librarian=new librarians($name, $surname, $dni, $email, $password);
+      $librarian = new librarians(0, $name, $surname, $dni, $email, $password);
 
       //ejecuta el metodo que registra al nuevo usuario a la base de datos
       $librarian->signup();
 
       //almaceno el objeto bibliotecario
       session_start();
-      $_SESSION['librarians']=$librarian;
+      $_SESSION['librarians'] = $librarian;
 
       //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
       header("Location: ../Prestar");
