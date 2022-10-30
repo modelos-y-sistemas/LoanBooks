@@ -134,7 +134,7 @@ if($_POST){
           <br>
           <input type="password" class="input" name="password">
           </div>
-          <input type="submit" class="sbmbtn" name="rol" value="librarians">
+          <input type="submit" class="sbmbtn" name="rol" value="Ingresar">
         </div>
       </form>
     </div>
@@ -145,7 +145,7 @@ if($_POST){
           <br>
           <input type="text" class="input" name="professor-code">
           <br>
-          <input type="submit" class="sbmbtn" id="sbm-2" name="rol" value="professors">
+          <input type="submit" class="sbmbtn" id="sbm-2" name="rol" value="Ingresar">
         </div>
       </form>
     </div>
@@ -156,7 +156,7 @@ if($_POST){
         <br>
         <input type="text" class="input" name="student-code">
         <br>
-        <input type="submit" class="sbmbtn" id="sbm-3" name="rol" value="students">
+        <input type="submit" class="sbmbtn" id="sbm-3" name="rol" value="Ingresar">
       </div>
       </form>
     </div>
