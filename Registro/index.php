@@ -1,4 +1,19 @@
 <?php
+//Verifico si el usuario inicio secion previamente
+session_start();
+$rols = ['librarians', 'professors', 'students'];
+
+if($_SESSION)
+{
+  $paths = ['https://localhost/LoanBooks/Prestar', 'https://localhost/LoanBooks/Mis-Pendientes', 'https://localhost/LoanBooks/Mis-Pendientes'];
+  
+  foreach ($rols as $key => $rol) {
+    if($_SESSION[$rol]){
+      header("location: $paths[$key]");
+    }
+  }
+  
+}
 //Verifico si lo recibido es por metodo post
 if($_POST){
   switch($_POST['submit']){
@@ -18,7 +33,6 @@ if($_POST){
       $librarian->signup();
 
       //almaceno el objeto bibliotecario
-      session_start();
       $_SESSION['librarians'] = $librarian;
 
       //envio al usuario que acaba de iniciar session a Buscar-y-Recibir

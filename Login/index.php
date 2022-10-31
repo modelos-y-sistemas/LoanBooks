@@ -5,7 +5,7 @@ $rols = ['librarians', 'professors', 'students'];
 
 if($_SESSION)
 {
-  $paths = ['https://localhost/LoanBooks/Buscar-y-Recibir', 'https://localhost/LoanBooks/Mis-Pendientes', 'https://localhost/LoanBooks/Mis-Pendientes'];
+  $paths = ['https://localhost/LoanBooks/Prestar', 'https://localhost/LoanBooks/Mis-Pendientes', 'https://localhost/LoanBooks/Mis-Pendientes'];
   
   foreach ($rols as $key => $rol) {
     if($_SESSION[$rol]){
