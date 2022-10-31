@@ -56,6 +56,7 @@ if($_POST){
 
       break;
     }
+      
     case "students":
     {
       $student_code = $_POST['student-code'];
@@ -74,6 +75,7 @@ if($_POST){
 
       break;
     }
+      
     case 'professors':
     {
       $professor_code = $_POST['professor-code'];
@@ -109,20 +111,30 @@ if($_POST){
   <link rel="shortcut icon" href="../img/LoanBooks_icon.svg" type="image/x-icon">
 </head>
 <body>
+  
+  <? //Llamado de componentes de la interfaz de la página en diferentes ubicaciones?>
 
   <?php include '../partials/HTML/header/header.php'; ?>
 
   <?php include '../partials/HTML/nav/nav.php'; ?>
   
   <div class="mainbox">
+    
+  <? //Botones de control de la interfaz del inicio de sesión ?>  
+    
     <center>
       <button class="mainselect" id="librarianbtn" onclick="ChangeLibrarian()">Bibliotecario</button>
       <button class="mainselect" id="professorbtn" onclick="ChangeProfessor()">Profesor</button>
       <button class="mainselect" id="studentbtn" onclick="ChangeStudent()">Estudiante</button>
     </center>
+    
     <h1 class="Message">IDENTIFÍQUESE</h1>
+    
     <div class="lib-form-box">
       <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="librarian-form">
+      <? //Programando el tipo de acción (method) del formulario, en este caso post" ?>
+
+      <? //Formulario de bibliotecario ?>
         <div class="insideform">
           <label for="email">Correo electrónico</label>
           <br>
@@ -139,6 +151,7 @@ if($_POST){
         </div>
       </form>
     </div>
+    <? //Formulario de profesor ?>
     <div class="pfs-form-box">
       <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="professor-form">
         <div class="insideform">
@@ -152,6 +165,7 @@ if($_POST){
         </div>
       </form>
     </div>
+    <? //Formulario de estudiante ?>
     <div class="std-form-box">
       <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="student-form">
       <div class="insideform">
@@ -166,6 +180,8 @@ if($_POST){
       </form>
     </div>
   </div>
+  
+  <? //Llamado al footer como archivo independiente en otra ubicación ?>
 
   <?php include "../partials/HTML/footer/footer.php"; ?>
 
