@@ -8,6 +8,10 @@ const Stdform = document.querySelector('.std-form-box');
 
 const msg = document.querySelector('.Message');
 
+//Variables funcionando como enlaces a las clases e ides en el archivo de la página.
+
+//Funciones que muestran u ocultan elementos controlando sus propiedades css.
+
 function ChangeLibrarian(){
     Lbnform.style.display = "block";
     Pfsform.style.display = "none";
