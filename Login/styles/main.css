@@ -1,3 +1,5 @@
+/* Programando el color del fondo de la página, usando la etiqueta body, ya que es la etiqueta que contiene todo lo visible*/
+
 body{
   display: flex;
   flex-direction: column;
@@ -61,19 +63,21 @@ body{
   border-color: rgb(37, 197, 255);
 }
 
+/* :hover, pseudo-clase que funciona posicionando el cursor  sobre un elemento*/
+
 #librarianbtn:hover{
   background-color: rgb(245, 203, 120);
   color: white;
   border-color: rgb(245, 203, 120);
 }
 
+/* Programando características a todos los labels utilizando directamente la etiqueta HTML sin clases ni ides */
 
 #professorbtn:hover{
   background-color: rgb(245, 203, 120);
   color: white;
   border-color: rgb(245, 203, 120);
 }
-
 
 #studentbtn:hover{
   background-color: rgb(245, 203, 120);
@@ -127,6 +131,8 @@ label{
   color: rgb(156, 153, 153);
   font-weight: bold;
 }
+
+/* Declarando las cajas de los formularios en oculto con la propiedad display*/
 
 .lib-form-box{
 	display: none;
