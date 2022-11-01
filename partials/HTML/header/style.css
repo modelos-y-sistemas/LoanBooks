@@ -5,8 +5,8 @@
 }
 
 .header{
-	background-color: rgb(165, 106, 42);
-  width: 100%;
+	background-color: rgba(165, 106, 42, 0.808);
+    width: 100%;
 }
 
 .tthead-container{
@@ -14,6 +14,7 @@
 }
 
 .title{
+	margin-top: 0.5%;
 	color: yellow;
 	font-size: 150%;
 	font-family: 'Buxton Sketch';
