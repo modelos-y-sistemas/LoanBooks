@@ -9,8 +9,6 @@
   else{
     header("location: ../");
   }
-    
-  echo $librarian->toString();  
 
 ?>
 
@@ -29,8 +27,8 @@
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
 </head>
 <body>
-  <a href="../partials/logout.php">
-    <button> salir </button>
-  </a>
+
+  <?php include '../partials/HTML/nav/nav.php'; ?>
+  <?= $librarian->toString() ?>
 </body>
 </html>

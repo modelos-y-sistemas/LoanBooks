@@ -1,19 +1,12 @@
 <?php
-//Verifico si el usuario inicio secion previamente
-session_start();
-$rols = ['librarians', 'professors', 'students'];
 
-if($_SESSION)
-{
-  $paths = ['https://localhost/LoanBooks/Prestar', 'https://localhost/LoanBooks/Mis-Pendientes', 'https://localhost/LoanBooks/Mis-Pendientes'];
-  
-  foreach ($rols as $key => $rol) {
-    if($_SESSION[$rol]){
-      header("location: $paths[$key]");
-    }
-  }
-  
+require '../class/librarians.php';
+
+session_start();
+if(!isset($_SESSION['librarians'])){
+  header("location: ../");
 }
+
 //Verifico si lo recibido es por metodo post
 if($_POST){
   switch($_POST['submit']){
@@ -22,7 +15,7 @@ if($_POST){
       require "../class/librarians.php";
       $name = $_POST['name'];
       $surname = $_POST['surname'];
-      $dni=$_POST['dni'];
+      $dni = $_POST['dni'];
       $email = $_POST['email'];
       $password = $_POST['password'];
 
@@ -56,6 +49,9 @@ if($_POST){
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
 </head>
 <body>
+
+  <?php include '../partials/HTML/nav/nav.php'; ?>
+  
   <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
     <label for="name">Nombre/s</label>
     <input type="text" name="name" id="name">

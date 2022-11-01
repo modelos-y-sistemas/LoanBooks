@@ -115,8 +115,6 @@ if($_POST){
   <? //Llamado de componentes de la interfaz de la página en diferentes ubicaciones?>
 
   <?php include '../partials/HTML/header/header.php'; ?>
-
-  <?php include '../partials/HTML/nav/nav.php'; ?>
   
   <div class="mainbox">
     

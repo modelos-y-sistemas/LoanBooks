@@ -2,12 +2,10 @@
 <nav class="nav">
   <div class="nav-container">
     <ul class="pages">
-      <li><a href="../">Inicio</a></li>
-      <li><a href="../Mis-Pendientes/">Mis pendientes</a></li>
-      <li><a href="../Prestar/">Prestar</a></li>
-      <li><a href="../History/">Historial</a></li>
-      <li><a href="../Registro/">Registro</a></li>
-      <li><a href="../Login/">Sesión</a></li>
+      <li><a href="https://localhost/LoanBooks/Buscar-y-Recibir/">Buscar y Recibir</a></li>
+      <li><a href="https://localhost/LoanBooks/Prestar/">Prestar</a></li>
+      <li><a href="https://localhost/LoanBooks/Registro/">Registro</a></li>
+      <li><a href="https://localhost/LoanBooks/partials/logout.php">Salir</a></li>
     </ul>
   </div>
 </nav>
