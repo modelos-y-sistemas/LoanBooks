@@ -43,7 +43,6 @@ if($_POST){
   
   <title>Registro | EESTN°5</title>
 
-  <link rel="stylesheet" href="https://localhost/LoanBooks/partials/generic.css">
   <link rel="stylesheet" href="./styles/main.css">
 
   <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">

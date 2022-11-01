@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    
+    background-image: url("books.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: bisque;
+}
+
+.container-section{
+    width: 100%;
+    height: 100%;
+}
+
+.user-name{
+    margin: 10px;
+    padding: 5px;
+    color: #fff;
+    font-weight: bolder;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.container-form-register{
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+@media screen and (max-width:750px){
+    .container-form-register{
+        width: 60%;
+        margin: 20px auto;
+        min-width: 370px;
+        justify-content:center;
+        flex-direction: column;
+}
+
+}
+
+.title{
+    text-align: center;
+    color: #fff;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
+    background-color:rgba(161,161,161,0.3);
+    text-shadow: 1px 1px 1px #000;
+}
+
+.container-inputs{
+    background-color:rgba(161,161,161,0.2);
+    text-shadow: 1px 1px 1px #000;
+    border: .5px solid #fff;
+    border-radius: 10px;
+    width: 350px;
+    margin-left: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+.title-option-1{
+    font-family:'Times New Roman', Times, serif;
+    text-decoration: underline #fff;
+    color: #fff;
+}
+.inputs input{
+    border-radius: 7px;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 150px;
+    height: 25px;
+    margin: 5px;
+    padding: 5px;
+    background-color: grey;
+}
+.inputs select{
+    border-radius: 7px;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 150px;
+    height: 25px;
+    margin: 5px;
+    padding: 0;
+    background-color: grey;
+}
+.btn{
+    font-size: 15px;
+    background-color:#552c07;
+    border: 2px solid #6a3605;
+    border-radius: 5px;
+    color: #fff;
+    font-family:'Times New Roman', Times, serif;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+}
+.btn:hover{
+    border: 2px solid #fff;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.title-option-1{
+    text-align: center;
+}
+
+.box-inputs{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.box-input-1 input{
+    border-radius: 7px;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 150px;
+    height: 25px;
+    margin: 5px;
+    padding: 5px;
+    background-color: grey;
+}
+.box-input-2 select{
+    border-radius: 7px;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 150px;
+    height: 25px;
+    margin: 5px;
+    padding: 0;
+    background-color: grey;
+}
