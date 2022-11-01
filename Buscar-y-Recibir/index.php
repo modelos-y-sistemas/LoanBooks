@@ -26,28 +26,7 @@
 </head>
 <body>
   <section class="container-section">
-    <div class="container-buttons">
-      <div class="box-1">
-        <a href="https://localhost/LoanBooks/Buscar-y-Recibir">
-          <button>
-            Buscar y Recibir
-          </button>
-        </a>
-        <a href="https://localhost/LoanBooks/Prestar">
-          <button>Prestar</button>
-        </a>
-        <a href="https://localhost/LoanBooks/Registro">
-          <button>Registro</button>
-        </a>
-      </div>
-      <div class="box-2">
-        <a href="../partials/logout.php">
-          <button>
-            Salir
-          </button>
-        </a>
-      </div>
-    </div>
+    <?php include '../partials/HTML/nav/nav.php';?>
     
     <div class="user-name" id="user-name">¡Hola, <?= $librarian->name ?>! :)</div>
     <h1 class="title">Buscar y Recibir</h1>

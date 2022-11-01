@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2022 a las 00:37:50
+-- Tiempo de generación: 01-11-2022 a las 06:38:34
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,7 +83,7 @@ CREATE TABLE `librarians_t` (
 --
 
 INSERT INTO `librarians_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, `password`) VALUES
-(1, 'Edith', 'Soto', 12345, 'edith@gmail.com', '$2y$10$0o.RMAZwCiwIGLt0o16w1e8Mlr1FV1ik2fa1c7tpkjeYrsxgjDl4K'),
+(1, 'Edith', 'Soto', NULL, 'edith@gmail.com', '$2y$10$0o.RMAZwCiwIGLt0o16w1e8Mlr1FV1ik2fa1c7tpkjeYrsxgjDl4K'),
 (2, 'Analia', 'Geoghegan', 45525488, 'la_rubia@gmail.com', '$2y$10$eDWcmihEZYT14Tr6IdiFLO078hNS0.zsjDA1DpzTeqD/B0K4EZbaq');
 
 -- --------------------------------------------------------
@@ -104,6 +104,19 @@ CREATE TABLE `orders_t` (
   `id_professor` int(11) DEFAULT NULL CHECK (`id_student` is not null and `id_professor` is null or `id_student` is null and `id_professor` is not null),
   `id_librarian` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `orders_t`
+--
+
+INSERT INTO `orders_t` (`id_order`, `book`, `category`, `total`, `start_order`, `end_order`, `returned`, `id_student`, `id_professor`, `id_librarian`) VALUES
+(1, 'El Sur', 'literatura', 1, '2022-10-26 01:17:46', '2022-10-27 00:00:00', 1, 1, NULL, 1),
+(2, 'El Aleph', 'literatura', 20, '2022-10-26 01:18:15', NULL, 0, NULL, 1, 2),
+(3, 'Programacion', 'informatica', 1, '2022-10-26 01:19:13', NULL, 0, 1, NULL, 2),
+(4, 'Atomos', 'Quimica', 2, '2022-10-26 01:22:46', '2022-10-30 00:00:00', 1, 2, NULL, 1),
+(5, 'Programacion Nivel 2', 'Programacion', 10, '2022-10-26 16:58:27', NULL, 1, NULL, 1, 1),
+(6, 'Blanca Nieves', 'literatura', 15, '2022-10-29 15:51:54', '2022-10-29 00:00:00', 1, NULL, 1, 2),
+(7, 'La princesa y el Sapo', 'literatura', 20, '2022-10-29 15:52:54', NULL, 0, NULL, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -213,7 +226,7 @@ ALTER TABLE `courses_t`
 -- AUTO_INCREMENT de la tabla `librarians_t`
 --
 ALTER TABLE `librarians_t`
-  MODIFY `id_librarian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_librarian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `orders_t`
