@@ -157,7 +157,7 @@ if($_POST){
           <br>
           <input type="text" class="input" name="professor-code">
           <br>
-          <button type="submit" class="sbmbtn" name="rol" value="professors">
+          <button type="submit" class="sbmbtn" id="sbm-2" name="rol" value="professors">
             Ingresar
           </button>
         </div>

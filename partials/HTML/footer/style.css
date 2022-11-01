@@ -2,14 +2,16 @@
   display: flex;
   justify-content: space-around;
   margin-top: 3%;
+  margin-bottom: auto;
   padding-top: 10px;
   padding-bottom: 10px;
   height: 100px;
   width: 100%;
-	background-color: rgba(165, 106, 42, 0.808);
+  background-color: rgba(165, 106, 42, 0.808);
   color: yellow;
   font-family: 'Consolas';
 }
+
 .text{
   display: flex;
   align-items: center;
