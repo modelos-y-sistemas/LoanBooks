@@ -10,6 +10,9 @@ else{
   header("location: ../");
 }
 
+
+  
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -92,6 +95,45 @@ else{
           </div>
           <button type="submit" class="btn">Prestar</button>
         </form>
+      <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
+        <input type="radio" name="debtor" value="Alumno" id="" checked>
+        <input type="radio" name="debtor" value="Profesor" id="">
+        <label for="code">Codigo</label>
+        <input type="text" name="Codigo" id="code">
+        <input type="submit" name="sbmt_SearchUser" value="Buscar">
+      </form>
+<?php
+if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo'])){
+  switch($_POST['debtor']){
+    case 'Alumno':
+      require_once '../class/students.php';
+      $user_record=students::get("code",$_POST['Codigo']);
+      break;
+    case 'Profesor':
+      require_once '../class/professors.php';
+      $user_record=professors::get("code",$_POST['Codigo']);
+      break;
+    default:
+      echo "nada capo";
+      break;
+  }
+echo $user_record->name;
+echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="get" class="container-inputs">
+<div class="box-inputs">
+  <div class="box-input-1">
+    <h2 class="title-option-1">Libro</h2>
+    <input type="text" placeholder="Categria">
+    <input type="text" placeholder="Nombre">
+    <input type="text" placeholder="Cantidad">
+  </div>
+</div>
+<button type="submit" class="btn">Prestar</button>
+</form>';
+//require_once '../class/loans.php';
+
+//$loan=new loans(0, );
+}
+?>
     </article>
   </section>
 </body>
