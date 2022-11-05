@@ -118,13 +118,13 @@ if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codi
       break;
   }
 echo $user_record->name;
-echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="get" class="container-inputs">
+echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
 <div class="box-inputs">
   <div class="box-input-1">
     <h2 class="title-option-1">Libro</h2>
-    <input type="text" placeholder="Categria">
-    <input type="text" placeholder="Nombre">
-    <input type="text" placeholder="Cantidad">
+    <input type="text" placeholder="Categria" name="ategory">
+    <input type="text" placeholder="Nombre" name="name">
+    <input type="text" placeholder="Cantidad" name="">
   </div>
 </div>
 <button type="submit" class="btn">Prestar</button>
