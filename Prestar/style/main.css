@@ -77,7 +77,7 @@ body{
     height: 25px;
     margin: 5px;
     padding: 5px;
-    background-color: grey;
+    background-color: grey;/*EL QUE CAUSA QUE NO SE VEA EL CURSOR LOS INPUTS*/
 }
 .inputs select{
     border-radius: 7px;
@@ -87,7 +87,7 @@ body{
     height: 25px;
     margin: 5px;
     padding: 0;
-    background-color: grey;
+    background-color: grey;/*EL QUE CAUSA QUE NO SE VEA EL CURSOR LOS INPUTS*/
 }
 .btni{
     font-size: 15px;

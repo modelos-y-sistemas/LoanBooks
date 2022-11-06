@@ -3,15 +3,13 @@
 require '../class/librarians.php';
 
 session_start();
+//unset($_SESSION['user_record']);
 if(isset($_SESSION['librarians'])){
   $librarian = $_SESSION['librarians'];
 }
 else{
   header("location: ../");
 }
-
-
-  
 
 ?>
 <!DOCTYPE html>
@@ -154,6 +152,29 @@ else{
       </ul>
     </div>
 <?php
+//Registra el nuevo estudiante/profesor
+if(isset($_POST['register'])&&$_POST['register']=='register-student'){
+  //echo $_POST['register'];
+  require_once '../class/students.php';
+
+  $student=new students();
+
+  $student->signup();
+
+  $_SESSION['user_record']=professors::get("code",$_SESSION['code']);
+  $_SESSION['debtor']='Alumno';
+}
+if(isset($_POST['register'])&&$_POST['register']=='register-professor'){
+  //echo $_POST['register'];
+  require_once '../class/professors.php';
+
+  $profesor=new professors(0, $_POST['name'], $_POST['surname'], $_SESSION['code'], $_POST['dni'], $_POST['phone']);
+
+  $profesor->signup();
+
+  $_SESSION['user_record']=professors::get("code",$_SESSION['code']);
+  $_SESSION['debtor']='Profesor';
+}
 //Busca al usuario y lo alamacena en $user_record
 if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo'])){
   switch($_POST['debtor']){
@@ -172,6 +193,7 @@ if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codi
       break;
   }
 }
+//Realiza el pedido BREAK PARA SALIR DE UN IF
 if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_POST['category'])&&isset($_POST['name'])&&isset($_POST['total'])&&isset($_POST['loan'])){
   require_once '../class/loans.php';
 
@@ -193,13 +215,58 @@ if(isset($_SESSION['user_record']->name)){
   </div>
   <button type="submit" class="btni" name="loan">Prestar</button>
   </form>';
-  //require_once '../class/loans.php';
-  
-  //$loan=new loans(0, );
 }
-else{
-  
+if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
+  $_SESSION['code']=$_POST['Codigo'];
+  if($_SESSION['debtor']=='Alumno'){
+    echo "NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO";
+    echo '
+    <article class="container-form-register">
+      <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
+        <h2 class="title-option-1"> Alumne </h2>
+        <div class="inputs">
+          <input type="text" value="Codigo: '. $_POST['Codigo'].'" readonly">
+          <input type="text" placeholder="Nombre">
+        </div>
+        <div class="inputs">
+          <input type="text" placeholder="Apellido">
+          <input type="text" placeholder="DNI">
+        </div>
+        <div class="inputs">
+          <input type="text" placeholder="Telefono">
+          <select name="Curso" id="Curso">
+            <option value="1">Opcion 1</option>
+          </select>
+        </div>
+        <button type="submit" class="btni" value="register-student" name="register">Registrar</button>
+      </form>
+      </article>
+      ';
+  }
+  else{
+    echo "NO EXISTE EL PROFESOR POR FAVOR REGISTRELO";
+    echo '
+    <article class="container-form-register">
+    <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
+        <h2 class="title-option-1"> Profesore </h2>
+        <div class="inputs">
+          <input type="text" value="Codigo: '. $_POST['Codigo'].'" readonly>
+          <input type="text" placeholder="Nombre" name="name">
+        </div>
+        <div class="inputs">
+          <input type="text" placeholder="Apellido" name="surname">
+          <input type="text" placeholder="DNI" name="dni">
+        </div>
+        <div class="inputs">
+          <input type="text" placeholder="Telefono" name="phone">
+        </div>
+        <button type="submit" class="btni" value="register-professor" name="register">Registrar</button>
+      </form>
+      </article>
+    ';
+  }
 }
+
 ?>
     </article>
   </section>

@@ -29,6 +29,16 @@ class students{
     // si queryExecutor no es null devuelve los registro sino retorna null
     return (isset($student_record)) ? $student_record : null;
   }
+
+  public function signup(){
+    
+    require_once '../datos/datos.php';
+    //se inserta el nuevo estudiante en la base de datos
+    $query = "INSERT INTO students_t (`name`, `surname`, `code`, `dni`, `phone`, `id_course`) VALUES ('$this->name', '$this->surname', '$this->code', '$this->dni', '$this->phone', '$this->id_course')";
+    echo $query;
+    datos::queryExecutor($query);
+
+  }
   
   public function toString(){
     
