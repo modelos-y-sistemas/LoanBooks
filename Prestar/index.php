@@ -154,35 +154,51 @@ else{
       </ul>
     </div>
 <?php
+//Busca al usuario y lo alamacena en $user_record
 if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo'])){
   switch($_POST['debtor']){
     case 'Alumno':
       require_once '../class/students.php';
-      $user_record=students::get("code",$_POST['Codigo']);
+      $_SESSION['user_record']=students::get("code",$_POST['Codigo']);
+      $_SESSION['debtor']='Alumno';
       break;
     case 'Profesor':
       require_once '../class/professors.php';
-      $user_record=professors::get("code",$_POST['Codigo']);
+      $_SESSION['user_record']=professors::get("code",$_POST['Codigo']);
+      $_SESSION['debtor']='Profesor';
       break;
     default:
-      echo "nada capo";
+      echo "Selecciona una opcion";
       break;
   }
-echo $user_record->name;
-echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
-<div class="box-inputs">
-  <div class="box-input-1">
-    <h2 class="title-option-1">Libro</h2>
-    <input type="text" placeholder="Categoria" name="category">
-    <input type="text" placeholder="Nombre" name="name">
-    <input type="text" placeholder="Cantidad" name="cantidad">
-  </div>
-</div>
-<button type="submit" class="btni">Prestar</button>
-</form>';
-//require_once '../class/loans.php';
+}
+if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_POST['category'])&&isset($_POST['name'])&&isset($_POST['total'])&&isset($_POST['loan'])){
+  require_once '../class/loans.php';
 
-//$loan=new loans(0, );
+  $loan=new loans(0, $_POST['name'], $_POST['category'], $_POST['total'], date('Y-m-d H:i:s'), '1001-01-01 01:01:01', 0, $_SESSION['user_record'], $librarian);
+
+  $loan->new_loan($_SESSION['debtor']);
+}
+//si $user_record existe entonces coloca el formulario para realizar pedidos
+if(isset($_SESSION['user_record']->name)){
+  echo $_SESSION['user_record']->name;
+  echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
+  <div class="box-inputs">
+    <div class="box-input-1">
+      <h2 class="title-option-1">Libro</h2>
+      <input type="text" placeholder="Categoria" name="category">
+      <input type="text" placeholder="Nombre" name="name">
+      <input type="text" placeholder="Cantidad" name="total">
+    </div>
+  </div>
+  <button type="submit" class="btni" name="loan">Prestar</button>
+  </form>';
+  //require_once '../class/loans.php';
+  
+  //$loan=new loans(0, );
+}
+else{
+  
 }
 ?>
     </article>
