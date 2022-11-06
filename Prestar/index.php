@@ -50,122 +50,47 @@ else{
     <h1 class="title">Prestar Libros</h1>
     
     <article class="container-form-register">
-      <form action="<?= $_SERVER['PHP_SELF']?>" method="get" class="container-inputs">
-        <h2 class="title-option-1"> Alumne </h2>
-        <div class="inputs">
-          <input type="text" placeholder="Codigo">
-          <input type="text" placeholder="Nombre">
-        </div>
-        <div class="inputs">
-          <input type="text" placeholder="Apellido">
-          <input type="text" placeholder="DNI">
-        </div>
-        <div class="inputs">
-          <input type="text" placeholder="Telefono">
-          <select name="Curso" id="Curso">
-            <option value="1">Opcion 1</option>
-          </select>
-        </div>
-        <button type="submit" class="btni" value="register-student">Registrar</button>
-      </form>
-      <form action="<?= $_SERVER['PHP_SELF']?>" method="get" class="container-inputs">
-        <h2 class="title-option-1"> Profesore </h2>
-        <div class="inputs">
-          <input type="text" placeholder="Codigo">
-          <input type="text" placeholder="Nombre">
-        </div>
-        <div class="inputs">
-          <input type="text" placeholder="Apellido">
-          <input type="text" placeholder="DNI">
-        </div>
-        <div class="inputs">
-          <input type="text" placeholder="Telefono">
-        </div>
-        <button type="submit" class="btni" value="register-professor">Registrar</button>
-      </form>
     </article>
     <article>
-      <form style="width: 500px;" action="<?= $_SERVER['PHP_SELF']?>" method="get" class="container-inputs">
-          <div class="box-inputs">
-            <div class="box-input-1">
-              <h2 class="title-option-1">Libro</h2>
-              <input type="text" placeholder="Categria">
-              <input type="text" placeholder="Nombre">
-              <input type="text" placeholder="Cantidad">
-            </div>
-            <div class="box-input-2">
-              <h2 class="title-option-1">Alumne</h2>
-              <select name="Curso" id="Curso">
-                <option value="1">Opcion 1</option>
-              </select>
-            </div>
-            <div class="box-input-2">
-              <h2 class="title-option-1">Profesor</h2>
-              <select name="Curso" id="Curso">
-                <option value="1">Opcion 1</option>
-              </select>
-            </div>
+      
+      <form action="<?= $_SERVER['PHP_SELF']?>" method="post" class="container-inputs">
+        <div class="box-inputs">
+          <div class="box-input-1">
+            <h2 class="title-option-1">Alumno</h2>
+            <input type="radio" name="debtor" value="Alumno" id="Alumno" checked>
           </div>
-          <button type="submit" class="btni">Prestar</button>
-        </form>
-      <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
-        <input type="radio" name="debtor" value="Alumno" id="" checked>
-        <input type="radio" name="debtor" value="Profesor" id="">
-        <label for="code">Codigo</label>
-        <input type="text" name="Codigo" id="code">
-        <input type="submit" name="sbmt_SearchUser" value="Buscar">
-      </form>
-      <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuTask" data-bs-toggle="dropdown" aria-expanded="false">
-        Agregar pedido
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li>
-        <div class="card card-body">
-          <form method="POST" id="subTask" action="./" submit="document.getElementById('subTask').reset();">
-
-            
-            <label for="">Libro</label>
-            <!--<div class="form-group">
-              <textarea name="duracion" id="duracion" rows="2" class="form-control" placeholder="duracion"></textarea>
-            </div>-->
-
-            <div class="form-group">
-              <input type="text" placeholder="Categoria" name="category" class="form-control" autofocus required>
-            </div>
-            <br>
-            <div class="form-group">
-              <input type="text" placeholder="Nombre" name="name" class="form-control" autofocus required>
-            </div>
-            <br>
-            <div class="form-group">
-              <input type="text" placeholder="Cantidad" name="cantidad" class="form-control" autofocus required>
-            </div>
-            <br>
-
-            <input type="button" id="" class="btn btn-success btn-block" value="Agregar">
-          </form>
+          <div class="box-input-1">
+            <h2 class="title-option-1">Profesor</h2>
+            <input type="radio" name="debtor" value="Profesor" id="Profesor">
+          </div>
+          <div class="box-input-1">
+            <h2 class="title-option-1">Codigo</h2>
+            <input type="text" name="Codigo" id="code" placeholder="Codigo" required>
+          </div>
         </div>
-        </li>
-        <!--<li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-      </ul>
-    </div>
+        <input type="submit" name="sbmt_SearchUser" class="btni" value="Buscar">
+      </form>
 <?php
-//Registra el nuevo estudiante/profesor
-if(isset($_POST['register'])&&$_POST['register']=='register-student'){
-  //echo $_POST['register'];
+//Registra el nuevo estudiante
+if(isset($_POST['register'])&&$_POST['register']=='register-student'&&isset($_POST['Curso'])){
   require_once '../class/students.php';
 
-  $student=new students();
+  if(!isset(students::get_course("id_course", $_POST['Curso'])->year)){
+    echo "¡Ingrese los datos correctamente!";
+    return 0;
+  }
+
+  $student=new students(0, $_POST['name'], $_POST['surname'], $_SESSION['code'], $_POST['dni'], $_POST['phone'], $_POST['Curso']);
 
   $student->signup();
 
-  $_SESSION['user_record']=professors::get("code",$_SESSION['code']);
+  $_SESSION['user_record']=students::get("code",$_SESSION['code']);
   $_SESSION['debtor']='Alumno';
+
+  echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
+//Registra el nuevo profesor
 if(isset($_POST['register'])&&$_POST['register']=='register-professor'){
-  //echo $_POST['register'];
   require_once '../class/professors.php';
 
   $profesor=new professors(0, $_POST['name'], $_POST['surname'], $_SESSION['code'], $_POST['dni'], $_POST['phone']);
@@ -174,6 +99,8 @@ if(isset($_POST['register'])&&$_POST['register']=='register-professor'){
 
   $_SESSION['user_record']=professors::get("code",$_SESSION['code']);
   $_SESSION['debtor']='Profesor';
+
+  echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
 //Busca al usuario y lo alamacena en $user_record
 if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo'])){
@@ -193,17 +120,19 @@ if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codi
       break;
   }
 }
-//Realiza el pedido BREAK PARA SALIR DE UN IF
+//Realiza el pedido
 if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_POST['category'])&&isset($_POST['name'])&&isset($_POST['total'])&&isset($_POST['loan'])){
   require_once '../class/loans.php';
 
   $loan=new loans(0, $_POST['name'], $_POST['category'], $_POST['total'], date('Y-m-d H:i:s'), '1001-01-01 01:01:01', 0, $_SESSION['user_record'], $librarian);
 
   $loan->new_loan($_SESSION['debtor']);
+
+  echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
 //si $user_record existe entonces coloca el formulario para realizar pedidos
 if(isset($_SESSION['user_record']->name)){
-  echo $_SESSION['user_record']->name;
+  echo '<h6 class="title-option-1">Categoria: '.$_SESSION['debtor'].'</h6><br><h6 class="title-option-1">Nombre y Apellido: '.$_SESSION['user_record']->name.' '.$_SESSION['user_record']->surname.'</h6><br><h6 class="title-option-1">Codigo: '.$_SESSION['user_record']->code.'</h6>';
   echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
   <div class="box-inputs">
     <div class="box-input-1">
@@ -216,6 +145,7 @@ if(isset($_SESSION['user_record']->name)){
   <button type="submit" class="btni" name="loan">Prestar</button>
   </form>';
 }
+//Si el usuario no existe entonces coloca el formulario para que rellene los datos del estudiante/profesor
 if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
   $_SESSION['code']=$_POST['Codigo'];
   if($_SESSION['debtor']=='Alumno'){
@@ -226,16 +156,38 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
         <h2 class="title-option-1"> Alumne </h2>
         <div class="inputs">
           <input type="text" value="Codigo: '. $_POST['Codigo'].'" readonly">
-          <input type="text" placeholder="Nombre">
+          <input type="text" placeholder="Nombre" name="name">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Apellido">
-          <input type="text" placeholder="DNI">
+          <input type="text" placeholder="Apellido" name="surname">
+          <input type="text" placeholder="DNI" name="dni">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Telefono">
+          <input type="text" placeholder="Telefono" name="phone">
           <select name="Curso" id="Curso">
-            <option value="1">Opcion 1</option>
+            <option value="1">1°1</option>
+            <option value="2">1°2</option>
+            <option value="3">1°3</option>
+            <option value="4">1°4</option>
+            <option value="5">2°1</option>
+            <option value="6">2°2</option>
+            <option value="7">3°1</option>
+            <option value="8">3°2</option>
+            <option value="9">4°1 TECIP</option>
+            <option value="11">4°1</option>
+            <option value="12">4°1</option>
+            <option value="13">4°2 TECIP</option>
+            <option value="14">5°1 TECIP</option>
+            <option value="16">5°1</option>
+            <option value="15">5°2 TECIP</option>
+            <option value="18">6°1 TECIP</option>
+            <option value="20">6°1</option>
+            <option value="21">6°1</option>
+            <option value="19">6°2 TECIP</option>
+            <option value="22">7°1 TECIP</option>
+            <option value="23">7°1</option>
+            <option value="24">7°1</option>
+            <option value="25">7°2 TECIP</option>
           </select>
         </div>
         <button type="submit" class="btni" value="register-student" name="register">Registrar</button>
@@ -266,7 +218,6 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
     ';
   }
 }
-
 ?>
     </article>
   </section>

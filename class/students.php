@@ -22,9 +22,19 @@ class students{
 
   public static function get($key, $value){
   
-    require '../datos/datos.php';
+    require_once '../datos/datos.php';
   
-    $student_record = datos::queryExecutor("SELECT * FROM `students_t` WHERE `$key` = '$value'");
+    $student_record = datos::queryExecutor("SELECT * FROM `students_t` WHERE `$key` = '$value'", false);
+  
+    // si queryExecutor no es null devuelve los registro sino retorna null
+    return (isset($student_record)) ? $student_record : null;
+  }
+
+  public static function get_course($key, $value){
+  
+    require_once '../datos/datos.php';
+  
+    $student_record = datos::queryExecutor("SELECT * FROM `courses_t` WHERE `$key` = '$value'", false);
   
     // si queryExecutor no es null devuelve los registro sino retorna null
     return (isset($student_record)) ? $student_record : null;
@@ -35,7 +45,7 @@ class students{
     require_once '../datos/datos.php';
     //se inserta el nuevo estudiante en la base de datos
     $query = "INSERT INTO students_t (`name`, `surname`, `code`, `dni`, `phone`, `id_course`) VALUES ('$this->name', '$this->surname', '$this->code', '$this->dni', '$this->phone', '$this->id_course')";
-    echo $query;
+    //echo $query;
     datos::queryExecutor($query);
 
   }
