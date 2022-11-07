@@ -64,6 +64,17 @@ body{
     margin: 10px;
     padding: 10px;
 }
+.container-inputs2{
+    background-color:rgba(161,161,161,0.2);
+    text-shadow: 1px 1px 1px #000;
+    border: .5px solid #fff;
+    border-radius: 10px;
+    width: 500px;
+    margin-left: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
 .title-option-1{
     font-family:'Times New Roman', Times, serif;
     text-decoration: underline #fff;
@@ -88,6 +99,9 @@ body{
     margin: 5px;
     padding: 0;
     background-color: grey;/*EL QUE CAUSA QUE NO SE VEA EL CURSOR LOS INPUTS*/
+}
+#code{
+    width: 100px;
 }
 .btni{
     font-size: 15px;

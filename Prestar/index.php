@@ -53,7 +53,7 @@ else{
     </article>
     <article>
       
-      <form action="<?= $_SERVER['PHP_SELF']?>" method="post" class="container-inputs">
+      <form action="<?= $_SERVER['PHP_SELF']?>" method="post" class="container-inputs2">
         <div class="box-inputs">
           <div class="box-input-1">
             <h2 class="title-option-1">Alumno</h2>
