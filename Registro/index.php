@@ -58,47 +58,36 @@ if($_POST){
 </head>
 <body>
 
-
   <?php include '../partials/HTML/nav/nav.php'; ?>
   
-  
-  <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-  
+  <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" autocomplete="off">
     <div class="col-md-6">
       <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name">
+      <input type="text" class="form-control" name="name" id="name" autofocus>
     </div>
-  
     <div class="col-md-6">
-      <label for="dni" class="form-label">Apellido</label>
-      <input type="password" class="form-control" id="surname">
+      <label for="surname" class="form-label">Apellido</label>
+      <input type="text" class="form-control" name="surname" id="surname">
     </div>
-  
     <div class="col-12">
-      <label for="inputAddress" class="form-label">D.N.I</label>
-      <input type="text" class="form-control" id="dni">
+      <label for="dni" class="form-label">D.N.I</label>
+      <input type="text" class="form-control" name="dni" id="dni">
     </div>
-  
     <div class="col-12">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" name="email" id="email">
     </div>
-  
     <div class="col-md-6">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password">
+      <input type="password" class="form-control" name="password" id="password">
     </div>
-  
     <div class="col-md-6">
       <label for="repassword" class="form-label">Repetir contraseña</label>
-      <input type="password" class="form-control" id="repassword">
-    </div>
-  
-  
+      <input type="password" class="form-control" name="repassword" id="repassword">
+    </div>  
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">librarian</button>
+      <button type="submit" class="btn btn-primary" name="submit" value="librarian">librarian</button>
     </div>
-  
   </form>
 
 
