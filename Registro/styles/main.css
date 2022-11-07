@@ -1,0 +1,13 @@
+* {
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  min-height: 100vh;
+  background: linear-gradient(rgba(6, 17, 29, 0.75), rgba(6, 15, 26, 0.75)),
+    url(./../../img/libreria-fondo.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
