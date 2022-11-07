@@ -27,6 +27,16 @@ class professors{
     // si queryExecutor no es null devuelve los registro sino retorna null
     return (isset($professor_record)) ? $professor_record : null;
   }
+
+  public function signup(){
+    
+    require_once '../datos/datos.php';
+    //se inserta el nuevo profesor en la base de datos
+    $query = "INSERT INTO professors_t (`name`, `surname`, `code`, `dni`, `phone`) VALUES ('$this->name', '$this->surname', '$this->code', '$this->dni', '$this->phone')";
+    //echo $query;
+    datos::queryExecutor($query);
+
+  }
   
   public function toString(){
     

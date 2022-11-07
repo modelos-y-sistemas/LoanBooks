@@ -1,5 +1,6 @@
 <?php
 
+//accedo a la clase librarians
 require '../class/librarians.php';
 
 session_start();
@@ -11,8 +12,8 @@ if(!isset($_SESSION['librarians'])){
 if($_POST){
   switch($_POST['submit']){
     case "librarian":
-      //accedo a la clase librarians
-      require "../class/librarians.php";
+      //accedo a la clase librarians si es que no fue agregada
+      require_once "../class/librarians.php";
       $name = $_POST['name'];
       $surname = $_POST['surname'];
       $dni = $_POST['dni'];
@@ -21,15 +22,16 @@ if($_POST){
 
       //creacion de objeto bibliotecario
       $librarian = new librarians(0, $name, $surname, $dni, $email, $password);
+      //echo $librarian->toString();
 
       //ejecuta el metodo que registra al nuevo usuario a la base de datos
       $librarian->signup();
 
       //almaceno el objeto bibliotecario
-      $_SESSION['librarians'] = $librarian;
+      //$_SESSION['librarians'] = $librarian;
 
       //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
-      header("Location: ../Prestar");
+      //header("Location: ../Prestar");
       break;
   }
 }
