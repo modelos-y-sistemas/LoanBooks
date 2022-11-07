@@ -35,7 +35,7 @@ class librarians{
     $password_hashed=password_hash($this->password, PASSWORD_BCRYPT);
     //se inserta el nuevo bibliotecario en la base de datos
     $query = "INSERT INTO librarians_t (`name`, `surname`, `dni`, `email`, `password`) VALUES ('$this->name', '$this->surname', '$this->dni', '$this->email', '$password_hashed')";
-    echo $query;
+    //echo $query;
     datos::queryExecutor($query);
 
   }
