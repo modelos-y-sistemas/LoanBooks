@@ -149,7 +149,7 @@ if(isset($_SESSION['user_record']->name)){
 if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
   $_SESSION['code']=$_POST['Codigo'];
   if($_SESSION['debtor']=='Alumno'){
-    echo "NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO";
+    echo '<h6 class="title-option-1">NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO</h6>';
     echo '
     <article class="container-form-register">
       <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
@@ -173,21 +173,21 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
             <option value="6">2°2</option>
             <option value="7">3°1</option>
             <option value="8">3°2</option>
-            <option value="9">4°1 TECIP</option>
-            <option value="11">4°1</option>
-            <option value="12">4°1</option>
-            <option value="13">4°2 TECIP</option>
-            <option value="14">5°1 TECIP</option>
-            <option value="16">5°1</option>
-            <option value="15">5°2 TECIP</option>
-            <option value="18">6°1 TECIP</option>
-            <option value="20">6°1</option>
-            <option value="21">6°1</option>
-            <option value="19">6°2 TECIP</option>
-            <option value="22">7°1 TECIP</option>
-            <option value="23">7°1</option>
-            <option value="24">7°1</option>
-            <option value="25">7°2 TECIP</option>
+            <option value="9">4°1 Informatica</option>
+            <option value="11">4°1 Turismo</option>
+            <option value="12">4°1 Alimentos</option>
+            <option value="13">4°2 Informatica</option>
+            <option value="14">5°1 Informatica</option>
+            <option value="16">5°1 Turismo</option>
+            <option value="15">5°2 Informatica</option>
+            <option value="18">6°1 Informatica</option>
+            <option value="20">6°1 Turismo</option>
+            <option value="21">6°1 Alimentos</option>
+            <option value="19">6°2 Informatica</option>
+            <option value="22">7°1 Informatica</option>
+            <option value="23">7°1 Turismo</option>
+            <option value="24">7°1 Alimentos</option>
+            <option value="25">7°2 Informatica</option>
           </select>
         </div>
         <button type="submit" class="btni" value="register-student" name="register">Registrar</button>
@@ -196,7 +196,7 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
       ';
   }
   else{
-    echo "NO EXISTE EL PROFESOR POR FAVOR REGISTRELO";
+    echo '<h6 class="title-option-1">NO EXISTE EL PROFESOR POR FAVOR REGISTRELO</h6>';
     echo '
     <article class="container-form-register">
     <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
