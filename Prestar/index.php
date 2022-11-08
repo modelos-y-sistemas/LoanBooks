@@ -161,7 +161,7 @@ if(isset($_SESSION['user_record']->name))
 //Si el usuario no existe entonces coloca el formulario para que rellene los datos del estudiante/profesor
 if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
 {
-  $_SESSION['code']=$_POST['Código'];
+  $_SESSION['code']=$_POST['Codigo'];
   if($_SESSION['debtor']=='Alumno')
   {
     echo '<h6 class="title-option-1">NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO</h6>';
@@ -170,7 +170,7 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
       <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
         <h2 class="title-option-1"> Alumne </h2>
         <div class="inputs">
-          <input type="text" class="slots" value="Código: '. $_POST['Código'].'" readonly">
+          <input type="text" class="slots" value="Código: '. $_POST['Codigo'].'" readonly>
           <input type="text" class="slots" placeholder="Nombre" name="name">
         </div>
         <div class="inputs">
@@ -219,7 +219,7 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
     <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
         <h2 class="title-option-1"> Profesore </h2>
         <div class="inputs">
-          <input type="text"  class="slots" value="Código: '. $_POST['Código'].'" readonly>
+          <input type="text"  class="slots" value="Código: '. $_POST['Codigo'].'" readonly>
           <input type="text" class="slots" placeholder="Nombre" name="name">
         </div>
         <div class="inputs">

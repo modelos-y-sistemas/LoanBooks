@@ -73,7 +73,7 @@ if($_POST){
 <body style="display:grid; justify-items: center;">
     <?php include '../partials/HTML/nav/nav.php' ?>
 
-    <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" autocomplete="off" name="mod">
+    <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" autocomplete="off">
         <h2>Modificacion de datos</h2>
         <div class="col-md-6">
         <label for="name" class="form-label">Nombre</label>
@@ -99,14 +99,13 @@ if($_POST){
         <div class="col-12">
         <button type="submit" class="btn btn-primary" name="sbmtmod" value="librarian">Modificar datos</button>
         </div>
-
-        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+    </form>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" name="mod">
         <h2>Eliminar cuenta</h2>
         <div class="col-12">
         <input type="hidden" name="del" value="Delete">
         <button type="button" onclick="confirmar()" class="btn btn-primary" id="delete" name="sbmtdel" value="Delete">Eliminar cuenta</button>
         </div>
-        </form>
     </form>
 
     <!-- bootstrap -->
