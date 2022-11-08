@@ -10,8 +10,15 @@ if(!isset($_SESSION['librarians'])){
 
 //Verifico si lo recibido es por metodo post
 if($_POST){
-    if(isset($_POST['sbmtmod'])&&isset($_POST['email'])&&isset($_POST['password'])){
-        $_SESSION['librarians']->Modify($_POST['email'], $_POST['password']);
+    if(isset($_POST['sbmtmod'])&&isset($_POST['email'])){
+        //echo "hola";
+        $_SESSION['librarians']->Modify("email", $_POST['email']);
+        if($_POST['password']!=""){
+            //Hasheando la password
+            $password_hashed=password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+            $_SESSION['librarians']->Modify("password", $password_hashed);
+        }
         $librarian=librarians::get("id_librarian", $_SESSION['librarians']->id);
         $_SESSION['librarians']=new librarians($librarian->id_librarian, $librarian->name, $librarian->surname, $librarian->dni, $librarian->email, $librarian->password);
     }

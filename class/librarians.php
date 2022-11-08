@@ -40,15 +40,13 @@ class librarians{
 
   }
 
-  public function Modify($Mail, $Password){
+  public function Modify($key, $value){
 
     require_once '../datos/datos.php';
-    //Hasheando la password
-    $password_hashed=password_hash($Password, PASSWORD_BCRYPT);
     //Se actualizan los registros
-    $query="UPDATE librarians_t SET email='$Mail', password='$password_hashed' WHERE id_librarian=$this->id";
+    $query="UPDATE librarians_t SET `$key` = '$value' WHERE id_librarian=$this->id";
 
-    datos::queryExecutor($query);
+    datos::queryExecutor($query, false);
   }
 
   public function Delete(){
