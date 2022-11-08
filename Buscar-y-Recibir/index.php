@@ -4,12 +4,72 @@
 
   session_start();
   if(isset($_SESSION['librarians'])){
+    require "C:/xampp/htdocs/LoanBooks/partials/tools/get_courses/get_courses.php"; // para obtener la variable $courses_record
+
     $librarian = $_SESSION['librarians'];
   }
   else{
-    header("location: ../");
+    header("Location: ../");
   }
 
+  if($_POST){
+    if($_POST['submit'] == "find_books"){
+
+      $book_name = $_POST["book__name"];
+      $book_category = $_POST["book__category"];
+      $book_start_order = $_POST["book__start_order"];
+      $book_end_order = $_POST["book__end_order"];
+
+      /*
+      echo "book_name: " . $book_name . "<br>";
+      echo "book_category: " . $book_category . "<br>";
+      echo "book_start_order: " . $book_start_order . "<br>";
+      echo "book_end_order: " . $book_end_order . "<br>";
+      */
+
+      if($_POST['searching'] == "student"){
+        $student_code = $_POST["student__code"];
+        $student_name = $_POST["student__name"];
+        $student_surname = $_POST["student__surname"];
+        $student_dni = $_POST["student__dni"];
+        $student_phone = $_POST["student__phone"];
+        $student_course = $_POST["student__course"];
+      
+        $records = $librarian->find_students($student_code, $student_name, $student_surname, $student_dni, $student_phone, $student_course, $book_name, $book_category, $book_start_order, $book_end_order);
+        
+        /*
+        echo "student_code: " . $student_code . "<br>";
+        echo "student_name: " . $student_name . "<br>";
+        echo "student_surname: " . $student_surname . "<br>";
+        echo "student_dni: " . $student_dni . "<br>";
+        echo "student_phone: " . $student_phone . "<br>";
+        echo "student_course: " . $student_course . "<br>";
+        */
+      }
+      elseif($_POST['searching'] == "professor"){
+        $professor_code = $_POST["professor__code"];
+        $professor_name = $_POST["professor__name"];
+        $professor_surname = $_POST["professor__surname"];
+        $professor_dni = $_POST["professor__dni"];
+        $professor_phone = $_POST["professor__phone"];
+
+        $records = $librarian->find_professors($professor_code, $professor_name, $professor_surname, $professor_dni, $professor_phone, $book_name, $book_category, $book_start_order, $book_end_order);
+
+        /*
+        echo "professor_code: " . $professor_code . "<br>";
+        echo "professor_name: " . $professor_name . "<br>";
+        echo "professor_surname: " . $professor_surname . "<br>";
+        echo "professor_dni: " . $professor_dni . "<br>";
+        echo "professor_phone: " . $professor_phone . "<br>";
+        */
+      }
+      else die('Algo salio mal.');
+    }
+    elseif($_POST['submit'] == "delivered"){
+      // cuando recibe los libros
+    }
+    else die('Algo salio mal.');
+  }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,131 +86,121 @@
 </head>
 <body>
   <section class="container-section">
-    <?php include '../partials/HTML/nav/nav.php';?>
+    <?php include '../partials/HTML/nav/nav.php'; ?>
     
     <div class="user-name" id="user-name">¡Hola, <?= $librarian->name ?>! :)</div>
     <h1 class="title">Buscar y Recibir</h1>
     
-    <article class="container-menu">
+    <form class="container-menu" method="POST" action="<?= $_SERVER['PHP_SELF'] ?>" id="find_books">
+      <div>
+        <label for="student">Alumno</label>
+        <input type="radio" name="searching" id="student" value="student" checked>
+      </div>
+      <div>
+        <label for="professor">Profesor</label>
+        <input type="radio" name="searching" id="professor" value="professor">
+      </div>
       <ul class="options">
         <li id="alumne">
           <a href="#alumne">Alumne</a>
           <ul>
             <li>
               <div class="inputs">
-                <input type="text" placeholder="Codigo">
-                <input type="text" placeholder="Nombre">
+                <input type="text" placeholder="Codigo" name="student__code">
+                <input type="text" placeholder="Nombre" name="student__name">
               </div>
-              
               <div class="inputs">
-                <input type="text" placeholder="Apellido">
-                <input type="text" placeholder="DNI">
+                <input type="text" placeholder="Apellido" name="student__surname">
+                <input type="text" placeholder="DNI" name="student__dni">
               </div>
-              
               <div class="inputs">
-                <input type="text" placeholder="Telefono">
-                <select name="Curso" id="Curso">
-                  <option value="1">Opcion 1</option>
+                <input type="text" placeholder="Telefono" name="student__phone">
+                <select name="student__course">
+                  <?php if(count($courses_record) > 0): ?>
+                    <option value="-1">Seleccionar</option>
+                    <?php foreach($courses_record as $course):?>  
+                      <option value="<?= $course->id_course ?>"> <?= $course->year . "° " . $course->division . "° " . $course->modality ?> </option>
+                    <?php endforeach;?>
+                  <?php else: ?>
+                    <option value="-1">No hay cursos para seleccionar</option>
+                  <?php endif; ?>
                 </select>
               </div>
             </li>
           </ul>
         </li>
-        
         <li id="libro">
           <a href="#libro">Libro</a>
           <ul>
             <div class="inputs">
-              <input type="text" placeholder="Nombre">
-              <input type="text" placeholder="Categoria">
-              
+              <input type="text" placeholder="Nombre" name="book__name">
+              <input type="text" placeholder="Categoria" name="book__category">
               <div class="order-label">
                 <label for="#Egreso">Fecha de Egreso</label>
-                <input type="date" id="Egreso" name="Egreso">
+                <input type="date" id="Egreso" name="book__start_order">
               </div>
-              
               <div class="order-label">
                 <label for="#Regreso">Fecha de Regreso</label>
-                <input type="date" id="Regreso" name="Regreso">
+                <input type="date" id="Regreso" name="book__end_order">
               </div>
             </div>
           </ul>
         </li>
-        
         <li id="profesore">
           <a href="#profesore">Profesore</a>
           <ul>
             <div class="box-inputs">
               <div class="inputs">
-                <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="DNI">
+                <input type="text" placeholder="Nombre" name="professor__name">
+                <input type="text" placeholder="DNI" name="professor__dni">
               </div>
-              
               <div class="inputs">
-                <input type="text" placeholder="Apellido">
-                <input type="text" placeholder="Telefono">
-                <input type="text" placeholder="Codigo">
+                <input type="text" placeholder="Apellido" name="professor__surname">
+                <input type="text" placeholder="Telefono" name="professor__phone">
+                <input type="text" placeholder="Codigo" name="professor__code">
               </div>
             </ul>
           </li>
-        </ul>
-      </article>
-    </section>
-    
-    <section class="container-table">
-      <article class="table">
-        <div class="div1 title-col"> Nombre y Apellido</div>
-        <div class="div2 "> </div>
-        <div class="div3"> </div>
-        <div class="div4"> </div>
-        <div class="div5 title-col">Rol</div>
-        <div class="div6"> </div>
-        <div class="div7"> </div>
-        <div class="div8"> </div>
-        <div class="div9 title-col">Libro</div>
-        <div class="div10"> </div>
-        <div class="div11"> </div>
-        <div class="div12"> </div>
-        <div class="div13 title-col">Categoria</div>
-        <div class="div14"> </div>
-        <div class="div15"> </div>
-        <div class="div16"> </div>
-        <div class="div17 title-col">Cantidad</div>
-        <div class="div18"> </div>
-        <div class="div19"> </div>
-        <div class="div20"> </div>
-        <div class="div21 title-col">Curso</div>
-        <div class="div22"> </div>
-        <div class="div23"> </div>
-        <div class="div24"> </div>
-        <div class="div25 title-col">Fecha</div>
-        <div class="div26"> </div>
-        <div class="div27"> </div>
-        <div class="div28"> </div>
-        <div class="div29 title-col">Devuelto</div>
-        <div class="div30"> </div>
-        <div class="div31"> </div>
-        <div class="div32"> </div>
-        <div class="div33 title-col">Bibliotecarie</div>
-        <div class="div34"> </div>
-        <div class="div35"> </div>
-        <div class="div36"> </div>
-  </article>
-</section>
+      </ul>
+    </form>
+  </section>
+      
+  <section class="container-table">
+    <article class="table">
+      <?php if(isset($records) && count($records) > 0): ?>
+        <table>
+          <thead>
+            <tr>
+              <?php foreach ($records[0] as $column => $value):?>
+                <th class="div1 title-col"> <?= $column ?> </th>
+              <?php endforeach; ?>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($records as $record):?>
+              <tr>
+                <?php foreach ($record as $key => $data):?>
+                  <td> <?= $data ?> </td>
+                <?php endforeach; ?>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php else: ?>
+        <p> No se Encontraron resultados </p>
+      <?php endif; ?>
+    </article>
+  </section>
 
-<div class="footer">
-  <button class="btn">Entregaron</button>
-
-  <div class="boxes">
-    <div class="box-number">1</div>
-    <div class="box-number">2</div>
-    <div class="box-number">3</div>
-    <div class="box-number">4</div>
+  <div class="footer">
+    <button type="submit" class="btn" name="submit" form="delivered" value="delivered"> Entregó </button>
+    <div class="boxes">
+      <div class="box-number">1</div>
+      <div class="box-number">2</div>
+      <div class="box-number">3</div>
+      <div class="box-number">4</div>
+    </div>
+    <button type="submit" class="btn" name="submit" form="find_books" value="find_books"> Buscar </button>
   </div>
-  
-
-  <button class="btn">Buscar</button>
-</div>
-
 </body>
 </html>

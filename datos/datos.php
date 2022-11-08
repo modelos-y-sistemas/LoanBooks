@@ -3,7 +3,7 @@ class datos{
   
   public static function queryExecutor($query, $result = false){
 
-    require '../dataBase/database.php'; // para obtener la variable connection
+    require 'C:/xampp/htdocs/LoanBooks/dataBase/database.php'; // para obtener la variable connection
 
     try {
       $stmt = $connection->prepare($query);

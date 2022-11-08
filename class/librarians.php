@@ -51,4 +51,161 @@ class librarians{
     return $result;
   }
 
+  public function find_professors($professor_code, $professor_name, $professor_surname, $professor_dni, $professor_phone, $book_name, $book_category, $book_start_order, $book_end_order){
+    require_once "C:/xampp/htdocs/LoanBooks/datos/datos.php";
+    $query = "
+      SELECT
+        CONCAT(`professors_t`.`name`, ' ', `professors_t`.`surname`) AS 'Nombre y Apellido',
+        `orders_t`.`book` AS 'Libro',
+        `orders_t`.`category` AS 'Categoría',
+        `orders_t`.`total` AS 'Cantidad',
+        `orders_t`.`start_order` AS 'Fecha',
+        CASE WHEN (`orders_t`.`returned` = 0) THEN 'NO'
+          ELSE 'SI'
+        END AS 'Devuelto',
+        `librarians_t`.`name` AS 'Bibliotecarie'
+      FROM `orders_t`
+        INNER JOIN `librarians_t`
+          ON `orders_t`.`id_librarian` = `librarians_t`.`id_librarian`
+        INNER JOIN `professors_t`
+          ON `orders_t`.`id_professor` = `professors_t`.`id_professor`
+      WHERE ";
+
+    $filtered = false;
+    
+    if($professor_code != ""){
+      $query .= "`professors_t`.`code` = '" . $professor_code . "' AND ";
+      $filtered = true;
+    }
+    if($professor_name != ""){
+      $query .= "`professors_t`.`name` LIKE '%" . $professor_name . "%' AND ";
+      $filtered = true;
+    }
+    if($professor_surname != ""){
+      $query .= "`professors_t`.`surname` LIKE '%" . $professor_surname . "%' AND ";
+      $filtered = true;
+    }
+    if($professor_dni != ""){
+      $query .= "`professors_t`.`dni` = '" . $professor_dni . "' AND ";
+      $filtered = true;
+    }
+    if($professor_phone != ""){
+      $query .= "`professors_t`.`phone` = '" . $professor_phone . "' AND ";
+      $filtered = true;
+    }
+    
+    if($book_name != ""){
+      $query .= "`orders_t`.`book` LIKE '%" . $book_name . "%' AND ";
+      $filtered = true;
+    }
+    if($book_category != ""){
+      $query .= "`orders_t`.`category` LIKE '%" . $book_category . "%' AND ";
+      $filtered = true;
+    }
+    if($book_start_order != ""){
+      $query .= "`orders_t`.`start_order` LIKE '" . $book_start_order . "%' AND ";
+      $filtered = true;
+    }
+    if($book_end_order != ""){
+      $query .= "`orders_t`.`end_order` LIKE '" . $book_end_order . "%' AND ";
+      $filtered = true;
+    }
+    
+    $query = !$filtered ? $query . "1" : substr($query, 0, strlen($query) - 5);
+    $records = datos::queryExecutor($query, true);
+    
+    return $records;
+  }
+  
+  public function find_students($student_code, $student_name, $student_surname, $student_dni, $student_phone, $student_course, $book_name, $book_category, $book_start_order, $book_end_order){
+    require_once "C:/xampp/htdocs/LoanBooks/datos/datos.php";
+    $query = "
+      SELECT
+        CONCAT(`students_t`.`name`, ' ', `students_t`.`surname`) AS 'Nombre y Apellido',
+        `orders_t`.`book` AS 'Libro',
+        `orders_t`.`category` AS 'Categoría',
+        `orders_t`.`total` AS 'Cantidad',
+        CONCAT(`courses_t`.`year`, '° ', `courses_t`.`division`, '° ',
+          CASE
+            WHEN (modality = 1) THEN 'INFORMATICA'
+            ELSE
+              CASE
+                WHEN (modality = 2) THEN 'TURISMO'
+                ELSE
+                  CASE
+                    WHEN (modality = 3) THEN 'ALIMENTOS'
+                    ELSE
+                      CASE
+                        WHEN (modality = 0) THEN 'CICLO BASICO'
+                        ELSE NULL
+                      END
+                  END
+              END
+          END)
+        AS 'Curso',
+        `orders_t`.`start_order` AS 'Fecha',
+        CASE
+          WHEN (`orders_t`.`returned` = 0)
+            THEN 'NO'
+          ELSE 'SI'
+        END AS 'Devuelto',
+        `librarians_t`.`name` AS 'Bibliotecarie'
+      FROM `orders_t`
+        INNER JOIN `librarians_t`
+          ON `orders_t`.`id_librarian` = `librarians_t`.`id_librarian`
+        INNER JOIN `students_t`
+          ON `orders_t`.`id_student` = `students_t`.`id_student`
+        INNER JOIN `courses_t`
+          ON `students_t`.`id_course` = `courses_t`.`id_course`
+      WHERE ";
+
+    $filtered = false;
+    
+    if($student_code != ""){
+      $query .= "`students_t`.`code` = '" . $student_code . "' AND ";
+      $filtered = true;
+    }
+    if($student_name != ""){
+      $query .= "`students_t`.`name` LIKE '%" . $student_name . "%' AND ";
+      $filtered = true;
+    }
+    if($student_surname != ""){
+      $query .= "`students_t`.`surname` LIKE '%" . $student_surname . "%' AND ";
+      $filtered = true;
+    }
+    if($student_dni != ""){
+      $query .= "`students_t`.`dni` = '" . $student_dni . "' AND ";
+      $filtered = true;
+    }
+    if($student_phone != ""){
+      $query .= "`students_t`.`phone` = '" . $student_phone . "' AND ";
+      $filtered = true;
+    }
+    if($student_course != -1){
+      $query .= "`students_t`.`id_course` = '" . $student_course . "' AND ";
+      $filtered = true;
+    }
+    
+    if($book_name != ""){
+      $query .= "`orders_t`.`book` LIKE '%" . $book_name . "%' AND ";
+      $filtered = true;
+    }
+    if($book_category != ""){
+      $query .= "`orders_t`.`category` LIKE '%" . $book_category . "%' AND ";
+      $filtered = true;
+    }
+    if($book_start_order != ""){
+      $query .= "`orders_t`.`start_order` LIKE '" . $book_start_order . "%' AND ";
+      $filtered = true;
+    }
+    if($book_end_order != ""){
+      $query .= "`orders_t`.`end_order` LIKE '" . $book_end_order . "%' AND ";
+      $filtered = true;
+    }
+    
+    $query = !$filtered ? $query . "1" : substr($query, 0, strlen($query) - 5);
+    $records = datos::queryExecutor($query, true);
+    
+    return $records;
+  }
 }
