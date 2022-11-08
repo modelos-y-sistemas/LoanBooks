@@ -123,6 +123,18 @@ body{
   color: white;
 }
 
+#sbm-2:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+  border-color: rgb(245, 203, 120);
+}
+
+#sbm-3:hover{
+  background-color: rgb(245, 203, 120);
+  color: white;
+  border-color: rgb(245, 203, 120);
+}
+
 label{
   color: rgb(156, 153, 153);
   font-weight: bold;

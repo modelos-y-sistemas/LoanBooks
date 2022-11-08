@@ -71,6 +71,7 @@
     else die('Algo salio mal.');
   }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,15 +107,15 @@
           <ul>
             <li>
               <div class="inputs">
-                <input type="text" placeholder="Codigo" name="student__code">
-                <input type="text" placeholder="Nombre" name="student__name">
+                <input type="text" class="filter_slots_search" placeholder="Código" name="student__code">
+                <input type="text" class="filter_slots_search" placeholder="Nombre" name="student__name">
               </div>
               <div class="inputs">
-                <input type="text" placeholder="Apellido" name="student__surname">
-                <input type="text" placeholder="DNI" name="student__dni">
+                <input type="text" class="filter_slots_search" placeholder="Apellido" name="student__surname">
+                <input type="text" class="filter_slots_search" placeholder="DNI" name="student__dni">
               </div>
               <div class="inputs">
-                <input type="text" placeholder="Telefono" name="student__phone">
+                <input type="text" class="filter_slots_search" placeholder="Teléfono" name="student__phone">
                 <select name="student__course">
                   <?php if(count($courses_record) > 0): ?>
                     <option value="-1">Seleccionar</option>
@@ -122,7 +123,7 @@
                       <option value="<?= $course->id_course ?>"> <?= $course->year . "° " . $course->division . "° " . $course->modality ?> </option>
                     <?php endforeach;?>
                   <?php else: ?>
-                    <option value="-1">No hay cursos para seleccionar</option>
+                    <option value="-1">No hay cursos para selecciónar</option>
                   <?php endif; ?>
                 </select>
               </div>
@@ -133,8 +134,8 @@
           <a href="#libro">Libro</a>
           <ul>
             <div class="inputs">
-              <input type="text" placeholder="Nombre" name="book__name">
-              <input type="text" placeholder="Categoria" name="book__category">
+              <input type="text" class="filter_slots_search" placeholder="Nombre" name="book__name">
+              <input type="text" class="filter_slots_search" placeholder="Categoría" name="book__category">
               <div class="order-label">
                 <label for="#Egreso">Fecha de Egreso</label>
                 <input type="date" id="Egreso" name="book__start_order">
@@ -151,13 +152,13 @@
           <ul>
             <div class="box-inputs">
               <div class="inputs">
-                <input type="text" placeholder="Nombre" name="professor__name">
-                <input type="text" placeholder="DNI" name="professor__dni">
+                <input type="text" class="filter_slots_search" placeholder="Nombre" name="professor__name">
+                <input type="text" class="filter_slots_search" placeholder="DNI" name="professor__dni">
               </div>
               <div class="inputs">
-                <input type="text" placeholder="Apellido" name="professor__surname">
-                <input type="text" placeholder="Telefono" name="professor__phone">
-                <input type="text" placeholder="Codigo" name="professor__code">
+                <input type="text" class="filter_slots_search" placeholder="Apellido" name="professor__surname">
+                <input type="text" class="filter_slots_search" placeholder="Teléfono" name="professor__phone">
+                <input type="text" class="filter_slots_search" placeholder="Código" name="professor__code">
               </div>
             </ul>
           </li>

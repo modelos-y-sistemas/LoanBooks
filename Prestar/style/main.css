@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     
     background-image: url("books.jpg");
@@ -64,6 +65,17 @@ body{
     margin: 10px;
     padding: 10px;
 }
+.container-inputs2{
+    background-color:rgba(161,161,161,0.2);
+    text-shadow: 1px 1px 1px #000;
+    border: .5px solid #fff;
+    border-radius: 10px;
+    width: 500px;
+    margin-left: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
 .title-option-1{
     font-family:'Times New Roman', Times, serif;
     text-decoration: underline #fff;
@@ -79,6 +91,7 @@ body{
     padding: 5px;
     background-color: grey;/*EL QUE CAUSA QUE NO SE VEA EL CURSOR LOS INPUTS*/
 }
+
 .inputs select{
     border-radius: 7px;
     border: 1px solid #fff;
@@ -89,6 +102,11 @@ body{
     padding: 0;
     background-color: grey;/*EL QUE CAUSA QUE NO SE VEA EL CURSOR LOS INPUTS*/
 }
+
+#code{
+    width: 100px;
+}
+
 .btni{
     font-size: 15px;
     background-color:#552c07;
@@ -103,6 +121,7 @@ body{
     height: 35px;
     margin: 10px;
 }
+
 .btni:hover{
     border: 2px solid #fff;
     color: #fff;
@@ -118,6 +137,9 @@ body{
     justify-content: space-around;
 }
 
+#code::placeholder{
+    color: white;
+}
 
 .box-input-1 input{
     border-radius: 7px;
@@ -129,6 +151,7 @@ body{
     padding: 5px;
     background-color: grey;
 }
+
 .box-input-2 select{
     border-radius: 7px;
     border: 1px solid #fff;

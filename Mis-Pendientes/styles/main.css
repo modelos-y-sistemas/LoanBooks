@@ -13,5 +13,12 @@ body {
   background: linear-gradient(rgba(6, 17, 29, 0.75), rgba(6, 15, 26, 0.75)),
     url(./../../img/libreria-fondo.jpg) no-repeat center center fixed;
   background-size: cover;
+	font-family: 'Cambria';
 }
 
+.exit{
+	font-size: 150%;
+	border-color: white;
+	border-radius: 30px;
+	background-color: transparent;
+}
