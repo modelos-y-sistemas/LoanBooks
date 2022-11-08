@@ -1,31 +1,27 @@
-.nav-container{
-	width: 650px;
-  background-color: rgb(245, 203, 120);
-	border-radius: 25px;
-}
+nav{
+  display: flex;
+  justify-content: center;
+	background-color: rgba(245, 203, 120, 0.616);
+  padding: 10px;
+  margin: 0;
+  gap: 10px;
+  border-bottom: 3px solid black;
+  outline: none;
 
-.nav ul{
-	list-style: none;
-	text-align: center;
 }
-
-.pages > li{
-	display: inline-block;
-	background-color: rgb(165, 106, 42);
-	padding: 2%;
-	cursor: pointer;
-}
-
-.pages > li > a{
-	
-	color: white;
+.link{
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(104, 61, 15, 0.822);
+  color: white;
 	font-size: 130%;
-	font-family: 'Open sans';
+	font-family: 'Courier New', Courier, monospace;
+  border-radius: 20px;
 	text-decoration: none;
-}
+  outline: none;
 
-li:hover{
-	background-color: rgb(245, 203, 120);
-	border-radius: 20px;
-	transition: all .3s;
+}
+.link:hover, .link:focus{
+  transition: all .3s;
+  background-color: rgba(104, 61, 15);
 }

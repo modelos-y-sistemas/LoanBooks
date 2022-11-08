@@ -65,132 +65,102 @@
 
 </head>
 <body>
-  <section class="container-section">
-    <?php include '../partials/HTML/nav/nav.php'; ?>
-    
-    <div class="user-name" id="user-name">¡Hola, <?= $librarian->name ?>! :)</div>
-    <h1 class="title">Buscar y Recibir</h1>
-    
-    <form class="container-menu" method="POST" action="<?= $_SERVER['PHP_SELF'] ?>" id="find_books">
-      <div>
-        <label for="student">Alumno</label>
-        <input type="radio" name="searching" id="student" value="student" checked>
-      </div>
-      <div>
-        <label for="professor">Profesor</label>
-        <input type="radio" name="searching" id="professor" value="professor">
-      </div>
-      <ul class="options">
-        <li id="alumne">
-          <a href="#alumne">Alumne</a>
-          <ul>
-            <li>
-              <div class="inputs">
-                <input type="text" class="filter_slots_search" placeholder="Código" name="student__code">
-                <input type="text" class="filter_slots_search" placeholder="Nombre" name="student__name">
-              </div>
-              <div class="inputs">
-                <input type="text" class="filter_slots_search" placeholder="Apellido" name="student__surname">
-                <input type="text" class="filter_slots_search" placeholder="DNI" name="student__dni">
-              </div>
-              <div class="inputs">
-                <input type="text" class="filter_slots_search" placeholder="Teléfono" name="student__phone">
-                <select name="student__course">
-                  <?php if(count($courses_record) > 0): ?>
-                    <option value="-1">Seleccionar</option>
-                    <?php foreach($courses_record as $course):?>  
-                      <option value="<?= $course->id_course ?>"> <?= $course->year . "° " . $course->division . "° " . $course->modality ?> </option>
-                    <?php endforeach;?>
-                  <?php else: ?>
-                    <option value="-1">No hay cursos para selecciónar</option>
-                  <?php endif; ?>
-                </select>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li id="libro">
-          <a href="#libro">Libro</a>
-          <ul>
-            <div class="inputs">
-              <input type="text" class="filter_slots_search" placeholder="Nombre" name="book__name">
-              <input type="text" class="filter_slots_search" placeholder="Categoría" name="book__category">
-              <div class="order-label">
-                <label for="#Egreso">Fecha de Egreso</label>
-                <input type="date" id="Egreso" name="book__start_order">
-              </div>
-              <div class="order-label">
-                <label for="#Regreso">Fecha de Regreso</label>
-                <input type="date" id="Regreso" name="book__end_order">
-              </div>
-            </div>
-          </ul>
-        </li>
-        <li id="profesore">
-          <a href="#profesore">Profesore</a>
-          <ul>
-            <div class="box-inputs">
-              <div class="inputs">
-                <input type="text" class="filter_slots_search" placeholder="Nombre" name="professor__name">
-                <input type="text" class="filter_slots_search" placeholder="DNI" name="professor__dni">
-              </div>
-              <div class="inputs">
-                <input type="text" class="filter_slots_search" placeholder="Apellido" name="professor__surname">
-                <input type="text" class="filter_slots_search" placeholder="Teléfono" name="professor__phone">
-                <input type="text" class="filter_slots_search" placeholder="Código" name="professor__code">
-              </div>
-            </ul>
-          </li>
-      </ul>
-    </form>
-  </section>
-      
-  <section class="container-table">
-    <article class="table">
-      <?php if(isset($records) && count($records) > 0): ?>
-        <table>
-          <thead>
-            <tr>
-              <?php foreach ($records[0] as $column => $value):?>
-                <th class="title-col"> <?= $column ?> </th>
-              <?php endforeach; ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($records as $record):?>
-              <tr>
-                <?php foreach ($record as $key => $data):?>
-                  <td>
-                    <?php
-                      if($key == "Selec."){
-                        if($record->Devuelto == "NO"){
-                          echo "<input type='checkbox' form='delivered' name='$data' id='selection'>";
-                        } else echo "";
-                      } else echo $data;
-                    ?>
-                  </td>
-                <?php endforeach; ?>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      <?php else: ?>
-        <p> No se Encontraron resultados </p>
-      <?php endif; ?>
-    </article>
-  </section>
-
-  <div class="footer">
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" id="delivered">
-      <button type="submit" class="btn" name="submit" value="delivered"> Entregó </button>
-    </form>
-    <div class="boxes">
-      <div class="box-number">1</div>
-      <div class="box-number">2</div>
-      <div class="box-number">3</div>
-      <div class="box-number">4</div>
-    </div>
-    <button type="submit" class="btn" name="submit" form="find_books" value="find_books"> Buscar </button>
+  
+  <?php include '../partials/HTML/nav/nav.php'; ?>
+  
+  <div class="librarian">
+    <p class="librarian__name">¡Hola, <?= $librarian->name ?>! :)</p>
   </div>
+  <h1 class="title">Buscar y Recibir</h1>
+
+  <form class="form_searching" method="POST" action="<?= $_SERVER['PHP_SELF'] ?>" id="find_books">
+    <div class="switch-field">
+      <input class="switch-field__input" type="radio" id="professor" name="searching" value="professor" <?= (!isset($_POST['searching'])) ? "checked" : ($_POST['searching'] == 'professor' ? "checked" : "") ?>/>
+      <label class="switch-field__label" for="professor">Profesores</label>
+      <input class="switch-field__input" type="radio" id="student" name="searching" value="student" <?= (!isset($_POST['searching'])) ? "checked" : ($_POST['searching'] == 'student' ? "checked" : "") ?> />
+      <label class="switch-field__label" for="student">Alumnos</label>
+    </div>
+    <div class="entities_form">
+      <div class="form form-student">
+        <h3 class="form__name">Alumno</h3>
+        <input type="text" class="control__input control__input-text" placeholder="Código" name="student__code">
+        <input type="text" class="control__input control__input-text" placeholder="Nombre" name="student__name">
+        <input type="text" class="control__input control__input-text" placeholder="Apellido" name="student__surname">
+        <input type="text" class="control__input control__input-text" placeholder="DNI" name="student__dni">
+        <input type="text" class="control__input control__input-text" placeholder="Teléfono" name="student__phone">
+        <select class="control__input control__input-select" name="student__course">
+          <?php if(count($courses_record) > 0): ?>
+            <option value="-1">Seleccionar</option>
+            <?php foreach($courses_record as $course):?>  
+              <option value="<?= $course->id_course ?>"> <?= $course->year . "° " . $course->division . "° " . $course->modality ?> </option>
+            <?php endforeach;?>
+          <?php else: ?>
+            <option value="-1">No hay cursos para selecciónar</option>
+          <?php endif; ?>
+        </select>
+      </div>
+      <div class="form form-book">
+      <h3 class="form__name">Libro</h3>
+        <input type="text" class="control__input control__input-text" placeholder="Nombre" name="book__name">
+        <input type="text" class="control__input control__input-text" placeholder="Categoría" name="book__category">
+        <label class="control__label" for="input_start_order">Fecha de Egreso</label>
+        <input type="date" class="control__input control__input-date" id="input_start_order" name="book__start_order">
+        <label class="control__label" for="input_end_order">Fecha de Regreso</label>
+        <input type="date" class="control__input control__input-date" id="input_end_order" name="book__end_order">
+      </div>
+      <div class="form form-professor">
+        <h3 class="form__name">Profesor</h3>
+        <input type="text" class="control__input control__input-text" placeholder="Nombre" name="professor__name">
+        <input type="text" class="control__input control__input-text" placeholder="DNI" name="professor__dni">
+        <input type="text" class="control__input control__input-text" placeholder="Apellido" name="professor__surname">
+        <input type="text" class="control__input control__input-text" placeholder="Teléfono" name="professor__phone">
+        <input type="text" class="control__input control__input-text" placeholder="Código" name="professor__code">
+      </div>
+    </div>
+  </form>
+
+  <?php if(isset($records) && count($records) > 0): ?>
+    <table>
+      <thead>
+        <tr>
+          <?php foreach ($records[0] as $column => $value):?>
+            <th class="title-col"> <?= $column ?> </th>
+          <?php endforeach; ?>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($records as $record):?>
+          <tr class="record">
+            <?php foreach ($record as $key => $data):?>
+              <td class="values_record">
+                <?php
+                  if($key == "Selec."){
+                    if($record->Devuelto == "NO"){
+                      echo "<input type='checkbox' form='delivered' name='$data' id='selection'>";
+                    } else echo "";
+                  } else echo $data;
+                ?>
+              </td>
+            <?php endforeach; ?>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+    <p class="message"> No se Encontraron resultados </p>
+  <?php endif; ?>
+  <div class="buttons">
+      <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" id="delivered">
+        <button type="submit" class="btn" name="submit" value="delivered"> Entregó </button>
+      </form>
+      <div class="boxes">
+        <div class="box-number">1</div>
+        <div class="box-number">2</div>
+        <div class="box-number">3</div>
+        <div class="box-number">4</div>
+      </div>
+      <button type="submit" class="btn" name="submit" form="find_books" value="find_books"> Buscar </button>
+    </div>
 </body>
+
 </html>

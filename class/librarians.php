@@ -215,8 +215,8 @@ class librarians{
 
   public function receive_book($id_order){
     require_once "../datos/datos.php";
-
-    $execute = datos::queryExecutor("UPDATE `orders_t` SET `returned` = '1' WHERE `id_order` = $id_order");
+    $date = getdate()['year'] . "-" . getdate()['month'] . "-" . getdate()['mday'];
+    $execute = datos::queryExecutor("UPDATE `orders_t` SET `returned` = '1', `end_order` = '$date' WHERE `id_order` = $id_order");
 
     return $execute; // bool
   }
