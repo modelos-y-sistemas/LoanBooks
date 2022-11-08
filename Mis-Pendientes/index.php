@@ -20,18 +20,18 @@
   }
   
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../img/LoanBooks_icon.svg" type="image/x-icon">
   
   <title>Mis Pendientes | Biblioteca EESTN°5</title>
   
   <link rel="stylesheet" href="./styles/main.css">
-
-  <link rel="shortcut icon" href="https://localhost/LoanBooks/img/favicon.jpg" type="image/x-icon">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -42,7 +42,7 @@
     <div class="d-flex justify-content-between p-5">
       <div>
         <h2>
-          Hola <?= isset($professor) ? $professor->name : ( isset($student) ? $student->name : ""); ?>!
+          ¡Hola <?= isset($professor) ? $professor->name : ( isset($student) ? $student->name : ""); ?>!
         </h2>
       </div>
       <div>
@@ -52,7 +52,7 @@
       </div>
       <div>
         <a href="../partials/logout.php">
-          <button> salir </button>
+          <button class="exit"> Salir </button>
         </a>
       </div>
     </div>
@@ -97,7 +97,7 @@
       </div>
       <?php else:?>
         <!-- Sino muestra un mensaje de que no tiene libros -->
-        <h3>Vaya, parece que ya no tenes libros pendientes para entregar </h3>
+        <h3>Vaya, parece que no tienes libros pendientes para entregar</h3>
       <?php endif;?>
   </div>
 

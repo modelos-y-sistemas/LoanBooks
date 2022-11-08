@@ -52,7 +52,9 @@ if($_POST){
         //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
         header("Location: ../Buscar-y-Recibir");
       }
-      else { echo "Email o password incorrectos"; }
+      else { 
+
+       }
 
       break;
     }
@@ -70,7 +72,7 @@ if($_POST){
         header("Location: ../Mis-Pendientes");
       }
       else{
-        echo "Código incorrecto";
+
       }
 
       break;
@@ -89,7 +91,7 @@ if($_POST){
         header("Location: ../Mis-Pendientes");
       }
       else{
-        echo "Código incorrecto";
+        
       }
 
       break;

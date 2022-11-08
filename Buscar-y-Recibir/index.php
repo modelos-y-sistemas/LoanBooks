@@ -11,6 +11,7 @@
   }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,19 +39,19 @@
           <ul>
             <li>
               <div class="inputs">
-                <input type="text" placeholder="Codigo">
-                <input type="text" placeholder="Nombre">
+                <input type="text" class="filter_slots_search" placeholder="Código">
+                <input type="text" class="filter_slots_search" placeholder="Nombre">
               </div>
               
               <div class="inputs">
-                <input type="text" placeholder="Apellido">
-                <input type="text" placeholder="DNI">
+                <input type="text" class="filter_slots_search" placeholder="Apellido">
+                <input type="text" class="filter_slots_search" placeholder="DNI">
               </div>
               
               <div class="inputs">
-                <input type="text" placeholder="Telefono">
+                <input type="text" class="filter_slots_search" placeholder="Teléfono">
                 <select name="Curso" id="Curso">
-                  <option value="1">Opcion 1</option>
+                  <option value="1">Opción 1</option>
                 </select>
               </div>
             </li>
@@ -61,8 +62,8 @@
           <a href="#libro">Libro</a>
           <ul>
             <div class="inputs">
-              <input type="text" placeholder="Nombre">
-              <input type="text" placeholder="Categoria">
+              <input type="text" class="filter_slots_search" placeholder="Nombre">
+              <input type="text" class="filter_slots_search" placeholder="Categoría">
               
               <div class="order-label">
                 <label for="#Egreso">Fecha de Egreso</label>
@@ -82,14 +83,14 @@
           <ul>
             <div class="box-inputs">
               <div class="inputs">
-                <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="DNI">
+                <input type="text" class="filter_slots_search" placeholder="Nombre">
+                <input type="text" class="filter_slots_search" placeholder="DNI">
               </div>
               
               <div class="inputs">
-                <input type="text" placeholder="Apellido">
-                <input type="text" placeholder="Telefono">
-                <input type="text" placeholder="Codigo">
+                <input type="text" class="filter_slots_search" placeholder="Apellido">
+                <input type="text" class="filter_slots_search" placeholder="Teléfono">
+                <input type="text" class="filter_slots_search" placeholder="Código">
               </div>
             </ul>
           </li>
@@ -111,7 +112,7 @@
         <div class="div10"> </div>
         <div class="div11"> </div>
         <div class="div12"> </div>
-        <div class="div13 title-col">Categoria</div>
+        <div class="div13 title-col">Categoría</div>
         <div class="div14"> </div>
         <div class="div15"> </div>
         <div class="div16"> </div>
@@ -147,7 +148,6 @@
     <div class="box-number">3</div>
     <div class="box-number">4</div>
   </div>
-  
 
   <button class="btn">Buscar</button>
 </div>

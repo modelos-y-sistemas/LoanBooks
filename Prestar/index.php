@@ -4,7 +4,8 @@ require '../class/librarians.php';
 
 session_start();
 //unset($_SESSION['user_record']);
-if(isset($_SESSION['librarians'])){
+if(isset($_SESSION['librarians']))
+{
   $librarian = $_SESSION['librarians'];
 }
 else{
@@ -65,14 +66,17 @@ else{
           </div>
           <div class="box-input-1">
             <h2 class="title-option-1">Codigo</h2>
-            <input type="text" name="Codigo" id="code" placeholder="Codigo" required>
+            <input type="text" name="Codigo" id="code" placeholder="Código" required>
           </div>
         </div>
         <input type="submit" name="sbmt_SearchUser" class="btni" value="Buscar">
       </form>
+
 <?php
+
 //Registra el nuevo estudiante
-if(isset($_POST['register'])&&$_POST['register']=='register-student'&&isset($_POST['Curso'])){
+if(isset($_POST['register'])&&$_POST['register']=='register-student'&&isset($_POST['Curso']))
+{
   require_once '../class/students.php';
 
   if(!isset(students::get_course("id_course", $_POST['Curso'])->year)){
@@ -89,8 +93,10 @@ if(isset($_POST['register'])&&$_POST['register']=='register-student'&&isset($_PO
 
   echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
+
 //Registra el nuevo profesor
-if(isset($_POST['register'])&&$_POST['register']=='register-professor'){
+if(isset($_POST['register'])&&$_POST['register']=='register-professor')
+{
   require_once '../class/professors.php';
 
   $profesor=new professors(0, $_POST['name'], $_POST['surname'], $_SESSION['code'], $_POST['dni'], $_POST['phone']);
@@ -102,8 +108,10 @@ if(isset($_POST['register'])&&$_POST['register']=='register-professor'){
 
   echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
+
 //Busca al usuario y lo alamacena en $user_record
-if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo'])){
+if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codigo']))
+{
   switch($_POST['debtor']){
     case 'Alumno':
       require_once '../class/students.php';
@@ -120,8 +128,10 @@ if(isset($_POST['sbmt_SearchUser'])&&isset($_POST['debtor'])&&isset($_POST['Codi
       break;
   }
 }
+
 //Realiza el pedido
-if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_POST['category'])&&isset($_POST['name'])&&isset($_POST['total'])&&isset($_POST['loan'])){
+if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_POST['category'])&&isset($_POST['name'])&&isset($_POST['total'])&&isset($_POST['loan']))
+{
   require_once '../class/loans.php';
 
   $loan=new loans(0, $_POST['name'], $_POST['category'], $_POST['total'], date('Y-m-d H:i:s'), '1001-01-01 01:01:01', 0, $_SESSION['user_record'], $librarian);
@@ -130,8 +140,10 @@ if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_PO
 
   echo "<script>location.href='https://localhost/LoanBooks/Prestar/';</script>";
 }
+
 //si $user_record existe entonces coloca el formulario para realizar pedidos
-if(isset($_SESSION['user_record']->name)){
+if(isset($_SESSION['user_record']->name))
+{
   echo '<h6 class="title-option-1">Categoria: '.$_SESSION['debtor'].'</h6><br><h6 class="title-option-1">Nombre y Apellido: '.$_SESSION['user_record']->name.' '.$_SESSION['user_record']->surname.'</h6><br><h6 class="title-option-1">Codigo: '.$_SESSION['user_record']->code.'</h6>';
   echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
   <div class="box-inputs">
@@ -145,10 +157,13 @@ if(isset($_SESSION['user_record']->name)){
   <button type="submit" class="btni" name="loan">Prestar</button>
   </form>';
 }
+
 //Si el usuario no existe entonces coloca el formulario para que rellene los datos del estudiante/profesor
-if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
+if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
+{
   $_SESSION['code']=$_POST['Codigo'];
-  if($_SESSION['debtor']=='Alumno'){
+  if($_SESSION['debtor']=='Alumno')
+  {
     echo '<h6 class="title-option-1">NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO</h6>';
     echo '
     <article class="container-form-register">
@@ -195,7 +210,9 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name)){
       </article>
       ';
   }
-  else{
+
+  else
+  {
     echo '<h6 class="title-option-1">NO EXISTE EL PROFESOR POR FAVOR REGISTRELO</h6>';
     echo '
     <article class="container-form-register">

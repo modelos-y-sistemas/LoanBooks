@@ -40,7 +40,7 @@ if($_SESSION){
 <div class="principal justify-content-center">
 
   <div class="container-sm p-5">
-    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACIÓN SECUNDARIA TECNICA N°5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
+    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACIÓN SECUNDARIA TÉCNICA N°5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
   </div>
   
   
