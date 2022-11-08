@@ -137,7 +137,7 @@ body{
     justify-content: space-around;
 }
 
-#code::placeholder{
+.slots::placeholder{
     color: white;
 }
 

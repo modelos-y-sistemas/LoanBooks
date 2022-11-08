@@ -20,13 +20,6 @@
       $book_start_order = $_POST["book__start_order"];
       $book_end_order = $_POST["book__end_order"];
 
-      /*
-      echo "book_name: " . $book_name . "<br>";
-      echo "book_category: " . $book_category . "<br>";
-      echo "book_start_order: " . $book_start_order . "<br>";
-      echo "book_end_order: " . $book_end_order . "<br>";
-      */
-
       if($_POST['searching'] == "student"){
         $student_code = $_POST["student__code"];
         $student_name = $_POST["student__name"];
@@ -36,15 +29,6 @@
         $student_course = $_POST["student__course"];
       
         $records = $librarian->find_students($student_code, $student_name, $student_surname, $student_dni, $student_phone, $student_course, $book_name, $book_category, $book_start_order, $book_end_order);
-        
-        /*
-        echo "student_code: " . $student_code . "<br>";
-        echo "student_name: " . $student_name . "<br>";
-        echo "student_surname: " . $student_surname . "<br>";
-        echo "student_dni: " . $student_dni . "<br>";
-        echo "student_phone: " . $student_phone . "<br>";
-        echo "student_course: " . $student_course . "<br>";
-        */
       }
       elseif($_POST['searching'] == "professor"){
         $professor_code = $_POST["professor__code"];
@@ -54,19 +38,14 @@
         $professor_phone = $_POST["professor__phone"];
 
         $records = $librarian->find_professors($professor_code, $professor_name, $professor_surname, $professor_dni, $professor_phone, $book_name, $book_category, $book_start_order, $book_end_order);
-
-        /*
-        echo "professor_code: " . $professor_code . "<br>";
-        echo "professor_name: " . $professor_name . "<br>";
-        echo "professor_surname: " . $professor_surname . "<br>";
-        echo "professor_dni: " . $professor_dni . "<br>";
-        echo "professor_phone: " . $professor_phone . "<br>";
-        */
       }
       else die('Algo salio mal.');
     }
     elseif($_POST['submit'] == "delivered"){
-      // cuando recibe los libros
+      // al $_POST solo le llegan los checks checkeados
+      foreach($_POST as $key => $value){
+        if($key != "submit" && $librarian->receive_book($key)) die('Algo salio mal.');
+      }
     }
     else die('Algo salio mal.');
   }
@@ -173,7 +152,7 @@
           <thead>
             <tr>
               <?php foreach ($records[0] as $column => $value):?>
-                <th class="div1 title-col"> <?= $column ?> </th>
+                <th class="title-col"> <?= $column ?> </th>
               <?php endforeach; ?>
             </tr>
           </thead>
@@ -181,7 +160,15 @@
             <?php foreach ($records as $record):?>
               <tr>
                 <?php foreach ($record as $key => $data):?>
-                  <td> <?= $data ?> </td>
+                  <td>
+                    <?php
+                      if($key == "Selec."){
+                        if($record->Devuelto == "NO"){
+                          echo "<input type='checkbox' form='delivered' name='$data' id='selection'>";
+                        } else echo "";
+                      } else echo $data;
+                    ?>
+                  </td>
                 <?php endforeach; ?>
               </tr>
             <?php endforeach; ?>
@@ -194,7 +181,9 @@
   </section>
 
   <div class="footer">
-    <button type="submit" class="btn" name="submit" form="delivered" value="delivered"> Entregó </button>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" id="delivered">
+      <button type="submit" class="btn" name="submit" value="delivered"> Entregó </button>
+    </form>
     <div class="boxes">
       <div class="box-number">1</div>
       <div class="box-number">2</div>

@@ -76,6 +76,7 @@ class librarians{
     require_once "../datos/datos.php";
     $query = "
       SELECT
+        `orders_t`.`id_order` AS 'Selec.',
         CONCAT(`professors_t`.`name`, ' ', `professors_t`.`surname`) AS 'Nombre y Apellido',
         `orders_t`.`book` AS 'Libro',
         `orders_t`.`category` AS 'Categoría',
@@ -143,6 +144,7 @@ class librarians{
     require_once "../datos/datos.php";
     $query = "
       SELECT
+        `orders_t`.`id_order` AS 'Selec.',
         CONCAT(`students_t`.`name`, ' ', `students_t`.`surname`) AS 'Nombre y Apellido',
         `orders_t`.`book` AS 'Libro',
         `orders_t`.`category` AS 'Categoría',
@@ -230,5 +232,13 @@ class librarians{
     $records = datos::queryExecutor($query, true);
     
     return $records;
+  }
+
+  public function receive_book($id_order){
+    require_once "../datos/datos.php";
+
+    $execute = datos::queryExecutor("UPDATE `orders_t` SET `returned` = '1' WHERE `id_order` = $id_order");
+
+    return $execute; // bool
   }
 }
