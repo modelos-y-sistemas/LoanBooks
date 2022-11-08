@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2022 a las 06:38:34
+-- Tiempo de generación: 08-11-2022 a las 04:17:12
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,8 @@ CREATE TABLE `librarians_t` (
 
 INSERT INTO `librarians_t` (`id_librarian`, `name`, `surname`, `dni`, `email`, `password`) VALUES
 (1, 'Edith', 'Soto', NULL, 'edith@gmail.com', '$2y$10$0o.RMAZwCiwIGLt0o16w1e8Mlr1FV1ik2fa1c7tpkjeYrsxgjDl4K'),
-(2, 'Analia', 'Geoghegan', 45525488, 'la_rubia@gmail.com', '$2y$10$eDWcmihEZYT14Tr6IdiFLO078hNS0.zsjDA1DpzTeqD/B0K4EZbaq');
+(2, 'Analia', 'Geoghegan', 45525488, 'la_rubia@gmail.com', '$2y$10$eDWcmihEZYT14Tr6IdiFLO078hNS0.zsjDA1DpzTeqD/B0K4EZbaq'),
+(9, 'admin', 'admin', 123456789, 'admin@mail.com', '$2y$10$qzv/PcFxAXuma.oupEXO2uGoPtxbfWLalSjdO3QleCnKv.NKEv3C6');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ CREATE TABLE `professors_t` (
 --
 
 INSERT INTO `professors_t` (`id_professor`, `name`, `surname`, `code`, `dni`, `phone`) VALUES
-(1, 'Carlos', 'Acuña', 0, NULL, 1132266763),
+(1, 'Carlos', 'Acuña', 2, NULL, 1132266763),
 (4, 'Pable', 'Pereyra', 1, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -226,25 +227,25 @@ ALTER TABLE `courses_t`
 -- AUTO_INCREMENT de la tabla `librarians_t`
 --
 ALTER TABLE `librarians_t`
-  MODIFY `id_librarian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_librarian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `orders_t`
 --
 ALTER TABLE `orders_t`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `professors_t`
 --
 ALTER TABLE `professors_t`
-  MODIFY `id_professor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_professor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `students_t`
 --
 ALTER TABLE `students_t`
-  MODIFY `id_student` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_student` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

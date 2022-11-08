@@ -77,23 +77,23 @@ body{
 .inputs input{
     border-radius: 7px;
     border: 1px solid #fff;
-    color: #fff;
+    color: rgb(0, 0, 0);
     width: 130px;
     height: 25px;
     margin: 5px;
     padding: 5px;
-    background-color: grey;
+    background-color: white;
 }
 
 .inputs select{
     border-radius: 7px;
     border: 1px solid #fff;
-    color: #fff;
+    color: rgb(0, 0, 0);
     width: 130px;
     height: 25px;
     margin: 5px;
     padding: 0;
-    background-color: grey;
+    background-color: rgb(172, 172, 172);
 }
 
 .order-label{

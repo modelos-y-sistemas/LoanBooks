@@ -69,11 +69,11 @@ if($_POST){
       <label for="surname" class="form-label">Apellido</label>
       <input type="text" class="form-control" name="surname" id="surname">
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
       <label for="dni" class="form-label">D.N.I</label>
       <input type="text" class="form-control" name="dni" id="dni">
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" name="email" id="email">
     </div>
@@ -81,10 +81,7 @@ if($_POST){
       <label for="password" class="form-label">Contraseña</label>
       <input type="password" class="form-control" name="password" id="password">
     </div>
-    <div class="col-md-6">
-      <label for="repassword" class="form-label">Repetir contraseña</label>
-      <input type="password" class="form-control" name="repassword" id="repassword">
-    </div>  
+    
     <div class="col-12">
       <button type="submit" class="btn btn-primary" name="submit" value="librarian">Bibliotecario</button>
     </div>
