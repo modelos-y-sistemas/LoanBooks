@@ -61,6 +61,7 @@ if($_POST){
   <?php include '../partials/HTML/nav/nav.php'; ?>
   
   <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" autocomplete="off">
+    <h2>Registro de un nuevo bibliotecario</h2>
     <div class="col-md-6">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" class="form-control" name="name" id="name" autofocus>

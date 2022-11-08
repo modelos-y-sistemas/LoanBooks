@@ -11,7 +11,6 @@ if(!isset($_SESSION['librarians'])){
 //Verifico si lo recibido es por metodo post
 if($_POST){
     if(isset($_POST['sbmtmod'])&&isset($_POST['email'])){
-        //echo "hola";
         $_SESSION['librarians']->Modify("email", $_POST['email']);
         if($_POST['password']!=""){
             //Hasheando la password
@@ -31,30 +30,6 @@ if($_POST){
 
         header('Location: ../');
     }
-    /*switch($_POST['sbmt']){
-      case "librarian":
-        //accedo a la clase librarians si es que no fue agregada
-        require_once "../class/librarians.php";
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $dni = $_POST['dni'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-  
-        //creacion de objeto bibliotecario
-        $librarian = new librarians(0, $name, $surname, $dni, $email, $password);
-        //echo $librarian->toString();
-  
-        //ejecuta el metodo que registra al nuevo usuario a la base de datos
-        $librarian->signup();
-  
-        //almaceno el objeto bibliotecario
-        //$_SESSION['librarians'] = $librarian;
-  
-        //envio al usuario que acaba de iniciar session a Buscar-y-Recibir
-        //header("Location: ../Prestar");
-        break;
-    }*/
 }
 ?>
 <!DOCTYPE html>
