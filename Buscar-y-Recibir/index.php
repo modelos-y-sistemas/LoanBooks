@@ -4,7 +4,7 @@
 
   session_start();
   if(isset($_SESSION['librarians'])){
-    require "C:/xampp/htdocs/LoanBooks/partials/tools/get_courses/get_courses.php"; // para obtener la variable $courses_record
+    require "../partials/tools/get_courses/get_courses.php"; // para obtener la variable $courses_record
 
     $librarian = $_SESSION['librarians'];
   }
