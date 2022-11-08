@@ -52,7 +52,7 @@ class librarians{
   }
 
   public function find_professors($professor_code, $professor_name, $professor_surname, $professor_dni, $professor_phone, $book_name, $book_category, $book_start_order, $book_end_order){
-    require_once "C:/xampp/htdocs/LoanBooks/datos/datos.php";
+    require_once "../datos/datos.php";
     $query = "
       SELECT
         CONCAT(`professors_t`.`name`, ' ', `professors_t`.`surname`) AS 'Nombre y Apellido',
