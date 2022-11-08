@@ -56,7 +56,7 @@ if($_POST){
     <?php include '../partials/HTML/nav/nav.php' ?>
 
     <form class="row g-3 p-5 m-5" action="<?= $_SERVER['PHP_SELF'] ?>" method="post" autocomplete="off">
-        <h2>Modificacion de datos</h2>
+        <h2>Modificación de datos</h2>
         <div class="col-md-6">
         <label for="name" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="name" value="<?php echo $_SESSION['librarians']->name;?>" readonly>
@@ -89,7 +89,7 @@ if($_POST){
         <button type="button" onclick="confirmar()" class="btn btn-primary" id="delete" name="sbmtdel" value="Delete">Eliminar cuenta</button>
         </div>
     </form>
-
+    <br>
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> 

@@ -84,7 +84,7 @@ if($_POST){
     </div>
     
     <div class="col-12">
-      <button type="submit" class="btn btn-primary" name="submit" value="librarian">Bibliotecario</button>
+      <button type="submit" class="btn btn-primary" name="submit" value="librarian">Registrar</button>
     </div>
   </form>
 

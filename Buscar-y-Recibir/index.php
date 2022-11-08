@@ -12,7 +12,8 @@
     header("Location: ../");
   }
 
-  if($_POST){
+  if($_POST){ // si hay datos
+    // verifica de que formulario viene
     if($_POST['submit'] == "find_books"){
 
       $book_name = $_POST["book__name"];
@@ -44,7 +45,8 @@
     elseif($_POST['submit'] == "delivered"){
       // al $_POST solo le llegan los checks checkeados
       foreach($_POST as $key => $value){
-        if($key != "submit" && $librarian->receive_book($key)) die('Algo salio mal.');
+        if($key != "submit" && $librarian->receive_book($key))
+          die('Algo salio mal.');
       }
     }
     else die('Algo salio mal.');

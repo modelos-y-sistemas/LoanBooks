@@ -178,7 +178,7 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
           <input type="text" class="slots" placeholder="DNI" name="dni">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Teléfono" name="phone">
+          <input type="text" class="slots" placeholder="Teléfono" name="phone">
           <select name="Curso" id="Curso">
             <option value="1">1°1</option>
             <option value="2">1°2</option>
