@@ -17,7 +17,7 @@ if($_SESSION){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <link rel="shortcut icon" href="img/LoanBooks_icon.svg" type="image/x-icon">
   <title>LoanBooks | EESTN°5</title>
 
   <link rel="stylesheet" href="https://localhost/LoanBooks/partials/generic.css">
@@ -40,7 +40,7 @@ if($_SESSION){
 <div class="principal justify-content-center">
 
   <div class="container-sm p-5">
-    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACION SECUNDARIA TECNICA N°5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
+    <p class="text-center fs-4 fw-semibold">ESCUELA DE EDUCACIÓN SECUNDARIA TECNICA N°5 <span class="text-break">BIBLIOTECA ESCOLAR<span></p>
   </div>
   
   
@@ -49,7 +49,7 @@ if($_SESSION){
   </div>
   
   <div class="container-sm mt-5 p-4">
-      <p class="text-center fs-5 lh-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ab tempore magni odio labore, laborum corporis quam porro dolore recusandae voluptas molestias perferendis aut nihil voluptate architecto sunt, adipisci dolorem fuga velit error nulla eos. Autem quae deserunt dignissimos debitis animi quis voluptatibus nemo fugiat maiores corporis beatae nesciunt magnam perspiciatis ea, sequi distinctio? Culpa ipsam facilis dolor corrupti optio.</p>
+      <p class="text-center fs-5 lh-base"></p>
   </div>
   
   <div class="container-sm mt-5 p-4">
@@ -60,7 +60,7 @@ if($_SESSION){
   
   
   <div class="container-sm mt-5 p-4">
-    <p class="text-center fs-5">Deja tus libros en nuestro local ubicado en el Centro Comunitario La Victoria</p>
+    <p class="text-center fs-5"></p>
   </div>
 
 
