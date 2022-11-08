@@ -118,7 +118,7 @@ class librarians{
   }
   
   public function find_students($student_code, $student_name, $student_surname, $student_dni, $student_phone, $student_course, $book_name, $book_category, $book_start_order, $book_end_order){
-    require_once "C:/xampp/htdocs/LoanBooks/datos/datos.php";
+    require_once "../datos/datos.php";
     $query = "
       SELECT
         CONCAT(`students_t`.`name`, ' ', `students_t`.`surname`) AS 'Nombre y Apellido',
