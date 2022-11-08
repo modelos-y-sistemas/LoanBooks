@@ -59,7 +59,8 @@ class librarians{
         `orders_t`.`book` AS 'Libro',
         `orders_t`.`category` AS 'Categoría',
         `orders_t`.`total` AS 'Cantidad',
-        `orders_t`.`start_order` AS 'Fecha',
+        `orders_t`.`start_order` AS 'Fecha de Egreso',
+        `orders_t`.`end_order` AS 'Fecha de Regreso',
         CASE WHEN (`orders_t`.`returned` = 0) THEN 'NO'
           ELSE 'SI'
         END AS 'Devuelto',
@@ -143,7 +144,8 @@ class librarians{
               END
           END)
         AS 'Curso',
-        `orders_t`.`start_order` AS 'Fecha',
+        `orders_t`.`start_order` AS 'Fecha de Egreso',
+        `orders_t`.`end_order` AS 'Fecha de Regreso',
         CASE
           WHEN (`orders_t`.`returned` = 0)
             THEN 'NO'
