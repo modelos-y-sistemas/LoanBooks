@@ -56,7 +56,7 @@ if($_POST){
   <!-- bootstrap -->
   
 </head>
-<body>
+<body style="display:grid; justify-items: center;">
 
   <?php include '../partials/HTML/nav/nav.php'; ?>
   

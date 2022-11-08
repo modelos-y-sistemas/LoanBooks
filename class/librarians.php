@@ -20,9 +20,9 @@ class librarians{
   
   public static function get($key, $value){
     
-    require '../datos/datos.php';
+    require_once '../datos/datos.php';
 
-    $librarian_record = datos::queryExecutor("SELECT * FROM `librarians_t` WHERE `$key` = '$value'");
+    $librarian_record = datos::queryExecutor("SELECT * FROM `librarians_t` WHERE `$key` = '$value'", false);
 
     // si queryExecutor no es null devuelve los registro sino retorna null
     return (isset($librarian_record)) ? $librarian_record : false;
@@ -38,6 +38,27 @@ class librarians{
     //echo $query;
     datos::queryExecutor($query);
 
+  }
+
+  public function Modify($Mail, $Password){
+
+    require_once '../datos/datos.php';
+    //Hasheando la password
+    $password_hashed=password_hash($Password, PASSWORD_BCRYPT);
+    //Se actualizan los registros
+    $query="UPDATE librarians_t SET email='$Mail', password='$password_hashed' WHERE id_librarian=$this->id";
+
+    datos::queryExecutor($query);
+  }
+
+  public function Delete(){
+
+    require_once '../datos/datos.php';
+    
+    //Se elimina el bibliotecario
+    $query="DELETE FROM librarians_t WHERE id_librarian=$this->id";
+
+    datos::queryExecutor($query);
   }
 
   public function toString(){

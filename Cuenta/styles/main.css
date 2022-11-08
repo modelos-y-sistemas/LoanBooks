@@ -11,3 +11,7 @@ body {
     url(./../../img/libreria-fondo.jpg) no-repeat center center fixed;
   background-size: cover;
 }
+
+#delete{
+  background-color: red;
+}
