@@ -65,8 +65,8 @@ else{
             <input type="radio" name="debtor" value="Profesor" id="Profesor">
           </div>
           <div class="box-input-1">
-            <h2 class="title-option-1">Codigo</h2>
-            <input type="text" name="Codigo" id="code" placeholder="Código" required>
+            <h2 class="title-option-1">Código</h2>
+            <input type="text" class="slots" id="code" name="Codigo" placeholder="Código" required>
           </div>
         </div>
         <input type="submit" name="sbmt_SearchUser" class="btni" value="Buscar">
@@ -144,14 +144,14 @@ if(isset($_SESSION['user_record']->name)&&isset($_SESSION['debtor'])&&isset($_PO
 //si $user_record existe entonces coloca el formulario para realizar pedidos
 if(isset($_SESSION['user_record']->name))
 {
-  echo '<h6 class="title-option-1">Categoria: '.$_SESSION['debtor'].'</h6><br><h6 class="title-option-1">Nombre y Apellido: '.$_SESSION['user_record']->name.' '.$_SESSION['user_record']->surname.'</h6><br><h6 class="title-option-1">Codigo: '.$_SESSION['user_record']->code.'</h6>';
+  echo '<h6 class="title-option-1">Categoría: '.$_SESSION['debtor'].'</h6><br><h6 class="title-option-1">Nombre y Apellido: '.$_SESSION['user_record']->name.' '.$_SESSION['user_record']->surname.'</h6><br><h6 class="title-option-1">Código: '.$_SESSION['user_record']->code.'</h6>';
   echo '<form style="width: 500px;" action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
   <div class="box-inputs">
     <div class="box-input-1">
       <h2 class="title-option-1">Libro</h2>
-      <input type="text" placeholder="Categoria" name="category">
-      <input type="text" placeholder="Nombre" name="name">
-      <input type="text" placeholder="Cantidad" name="total">
+      <input type="text" class="slots" placeholder="Categoría" name="category">
+      <input type="text" class="slots" placeholder="Nombre" name="name">
+      <input type="text" class="slots" placeholder="Cantidad" name="total">
     </div>
   </div>
   <button type="submit" class="btni" name="loan">Prestar</button>
@@ -161,7 +161,7 @@ if(isset($_SESSION['user_record']->name))
 //Si el usuario no existe entonces coloca el formulario para que rellene los datos del estudiante/profesor
 if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
 {
-  $_SESSION['code']=$_POST['Codigo'];
+  $_SESSION['code']=$_POST['Código'];
   if($_SESSION['debtor']=='Alumno')
   {
     echo '<h6 class="title-option-1">NO EXISTE EL ESTUDIANTE POR FAVOR REGISTRELO</h6>';
@@ -170,15 +170,15 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
       <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
         <h2 class="title-option-1"> Alumne </h2>
         <div class="inputs">
-          <input type="text" value="Codigo: '. $_POST['Codigo'].'" readonly">
-          <input type="text" placeholder="Nombre" name="name">
+          <input type="text" class="slots" value="Código: '. $_POST['Código'].'" readonly">
+          <input type="text" class="slots" placeholder="Nombre" name="name">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Apellido" name="surname">
-          <input type="text" placeholder="DNI" name="dni">
+          <input type="text" class="slots" placeholder="Apellido" name="surname">
+          <input type="text" class="slots" placeholder="DNI" name="dni">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Telefono" name="phone">
+          <input type="text" placeholder="Teléfono" name="phone">
           <select name="Curso" id="Curso">
             <option value="1">1°1</option>
             <option value="2">1°2</option>
@@ -219,15 +219,15 @@ if(isset($_POST['sbmt_SearchUser'])&&!isset($_SESSION['user_record']->name))
     <form action="'.$_SERVER['PHP_SELF'].'" method="post" class="container-inputs">
         <h2 class="title-option-1"> Profesore </h2>
         <div class="inputs">
-          <input type="text" value="Codigo: '. $_POST['Codigo'].'" readonly>
-          <input type="text" placeholder="Nombre" name="name">
+          <input type="text"  class="slots" value="Código: '. $_POST['Código'].'" readonly>
+          <input type="text" class="slots" placeholder="Nombre" name="name">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Apellido" name="surname">
-          <input type="text" placeholder="DNI" name="dni">
+          <input type="text" class="slots" placeholder="Apellido" name="surname">
+          <input type="text" class="slots" placeholder="DNI" name="dni">
         </div>
         <div class="inputs">
-          <input type="text" placeholder="Telefono" name="phone">
+          <input type="text" class="slots" placeholder="Teléfono" name="phone">
         </div>
         <button type="submit" class="btni" value="register-professor" name="register">Registrar</button>
       </form>
